@@ -135,4 +135,3 @@ price_flyeralarm,
 CASE WHEN price_lag_flyeralarm IS NOT NULL THEN price_flyeralarm - price_lag_flyeralarm END as price_variation_flyeralarm
 
 FROM price_variation
-;
