@@ -56,3 +56,69 @@ models:
         description: "SKU Supplier Price for Helloprint"
       - name: carrier_cost
         description: "SKU Carrier Cost for Helloprint"
+
+  - name: process_data_model
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: date_price_updated
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: country_name
+        description: "Country of the shop where prices where fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_variation_helloprint
+        description: "Helloprint price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: price_variation_helloprint_connect
+        description: "Helloprint Connect price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: price_printoclock
+        description: "SKU Price of competition: printoclock"
+      - name: price_variation_printoclock
+        description: "Printoclock price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: price_realisaprint
+        description: "SKU Price of competition: realisaprint"
+      - name: price_variation_realisaprint
+        description: "Realisaprint price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_variation_flyeralarm
+        description: "FlyerAlarm price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
