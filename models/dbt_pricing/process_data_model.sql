@@ -41,7 +41,7 @@ SELECT
 -- flyeralarm
    price_flyeralarm,
    SUM(CASE WHEN price_flyeralarm IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY sku ORDER BY date_price_updated  ASC) as flyeralarm_partition
-FROM {{ ref('process_data_model') }}
+FROM {{ ref('clean_data_model') }}
 ORDER BY SKU ASC, date_price_updated ASC),
 -----------------------------------------------------------------------------------------------------
 
