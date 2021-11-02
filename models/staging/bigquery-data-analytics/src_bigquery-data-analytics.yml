@@ -4,7 +4,7 @@ sources:
   - name: bigquery-data-analytics
     database: helloprint-data-analytics-live
     schema: silver_raw
-    description:
+    description: bigquery_table_from_spyder
 
     freshness:
       warn_after:

@@ -30,5 +30,8 @@ clean-targets: # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-    dbt_pricing:
+    marts:
+        +materialized: table
+
+    staging:
         +materialized: view
