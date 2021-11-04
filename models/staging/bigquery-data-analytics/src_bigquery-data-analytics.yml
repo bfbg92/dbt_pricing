@@ -1,0 +1,72 @@
+version: 2
+
+sources:
+  - name: bigquery-data-analytics
+    database: helloprint-data-analytics-live
+    schema: silver_raw
+    description: bigquery_table_from_spyder
+
+    freshness:
+      warn_after:
+        period: day
+        count: 7
+      error_after:
+        period: day
+        count: 14
+
+    tables:
+      - name: pricing_monitoring
+        identifier: pricing_monitoring_data_staging
+        loaded_at_field: time_price_updated
+
+        columns:
+          - name: time_price_updated
+            description: "Date when spider ran and the pricing values were fetched"
+            tests:
+              - not_null
+          - name: country_name
+            description: "Country of the shop where prices where fetched"
+            tests:
+              - not_null
+          - name: product_name
+            description: "Product Name of the collected prices"
+            tests:
+              - not_null
+          - name: sku
+            description: "Unique product id of the collected prices"
+            tests:
+              - not_null
+          - name: quantity
+            description: "Product Attribute: Quantity"
+            tests:
+              - not_null
+          - name: turnaround
+            description: "Product Attribute: TurnAround"
+            tests:
+              - not_null
+          - name: material
+            description: "Product Attribute: material"
+            tests:
+              - not_null
+          - name: size
+            description: "Product Attribute: size"
+            tests:
+              - not_null
+          - name: cover
+            description: "Product Attribute: cover"
+          - name: finishing
+            description: "Product Attribute: finishing"
+          - name: competitor_name
+            description: "Name of the Competitor"
+          - name: salesprice_comp_r1
+            description: "SKU Price of Helloprint"
+          - name: salesprice_comp_all
+            description: "SKU Price of Helloprint Connect"
+          - name: competitor_price_comp_r1
+            description: "SKU Price of respective competitor"
+          - name: cost_price
+            description: "SKU Cost Price for Helloprint"
+          - name: supplier_price
+            description: "SKU Supplier Price for Helloprint"
+          - name: carrier_cost
+            description: "SKU Carrier Cost for Helloprint"
