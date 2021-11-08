@@ -35,7 +35,7 @@ INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON
   fact.country_name = dim.country_name AND
   fact.product_name = dim.product_name AND
   fact.sku = dim.sku AND
-  fact.company_name = dim.company_name AND
+  fact.company_name = dim.company_name
 
 ORDER BY SKU ASC, date_price_updated ASC),
 -----------------------------------------------------------------------------------------------------
