@@ -122,12 +122,20 @@ models:
         description: "Unique product id of the collected prices"
         tests:
           - not_null
+      - name: sku_no_turnaround
+        description: "Unique product id without turnaround information of the collected prices"
+        tests:
+          - not_null
       - name: quantity
         description: "Product Attribute: Quantity"
         tests:
           - not_null
       - name: turnaround
         description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: turnaround_type
+        description: "todo"
         tests:
           - not_null
       - name: material
