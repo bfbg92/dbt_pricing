@@ -2,6 +2,7 @@ WITH turnaround_fastest AS (
   SELECT
     date_price_updated,
     country_name,
+    company_name,
     LOWER(product_name) AS product_name,
     sku,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
@@ -13,6 +14,7 @@ turnaround_slowest AS (
   SELECT
     date_price_updated,
     country_name,
+    company_name,
     LOWER(product_name) AS product_name,
     sku,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,

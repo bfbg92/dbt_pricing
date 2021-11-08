@@ -78,6 +78,10 @@ models:
         description: "Country of the shop where prices where fetched"
         tests:
           - not_null
+      - name: company_name
+        description: "Country of the shop where prices where fetched"
+        tests:
+          - not_null
       - name: product_name
         description: "Product Name of the collected prices"
         tests:
