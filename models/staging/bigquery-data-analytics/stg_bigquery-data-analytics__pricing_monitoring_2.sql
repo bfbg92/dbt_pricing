@@ -36,6 +36,10 @@ competitor_filtered_renamed AS (
             'realisaprint',
             'flyeralarm'
         )
+        AND salesprice_comp_r1 IS NOT NULL
+        AND salesprice_comp_r1 > 0
+        AND salesprice_comp_all IS NOT NULL
+        AND salesprice_comp_all > 0
         AND competitor_price_comp_r1 IS NOT NULL
         AND competitor_price_comp_r1 > 0
     GROUP BY
@@ -79,6 +83,10 @@ helloprint_filtered_renamed AS (
         )
         AND salesprice_comp_r1 IS NOT NULL
         AND salesprice_comp_r1 > 0
+        AND salesprice_comp_all IS NOT NULL
+        AND salesprice_comp_all > 0
+        AND competitor_price_comp_r1 IS NOT NULL
+        AND competitor_price_comp_r1 > 0
     GROUP BY
         1,
         2,
@@ -118,8 +126,12 @@ helloprint_connect_filtered_renamed AS (
             'realisaprint',
             'flyeralarm'
         )
+        AND salesprice_comp_r1 IS NOT NULL
+        AND salesprice_comp_r1 > 0
         AND salesprice_comp_all IS NOT NULL
         AND salesprice_comp_all > 0
+        AND competitor_price_comp_r1 IS NOT NULL
+        AND competitor_price_comp_r1 > 0
 
     GROUP BY
         1,
