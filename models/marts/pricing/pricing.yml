@@ -66,3 +66,31 @@ models:
         description: "SKU Supplier Price for Helloprint"
       - name: carrier_cost
         description: "SKU Carrier Cost for Helloprint"
+
+  - name: dim_sku_turnaround_type
+    description: "todo"
+    columns:
+      - name: date_price_updated
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: country_name
+        description: "Country of the shop where prices where fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: sku_no_turnaround
+        description: "Unique product id without turnaround information of the collected prices"
+        tests:
+          - not_null
+      - name: turnaround_type
+        description: "todo"
+        tests:
+          - not_null
