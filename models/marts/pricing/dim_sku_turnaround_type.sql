@@ -9,6 +9,7 @@ WITH turnaround_fastest AS (
     MIN(turnaround) AS turnaround
   FROM
     {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }}
+  WHERE turnaround <= 3
   GROUP BY 1,2,3,4,5,6
 ),
 turnaround_slowest AS (
@@ -22,6 +23,7 @@ turnaround_slowest AS (
     MAX(turnaround) AS turnaround
   FROM
     {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }}
+  WHERE turnaround > 3
   GROUP BY 1,2,3,4,5,6
 
 ),
