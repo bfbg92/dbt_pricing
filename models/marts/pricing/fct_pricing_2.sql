@@ -2,33 +2,33 @@
 
 WITH fill_nulls_temp as (
 SELECT 
-  date_price_updated,
-  country_name,
-  product_name,
-  sku,
-  company_name,
-  quantity,
-  turnaround,
-  turnaround_type,
-  material,
-  size,
-  cover,
-  finishing,
+  fact.date_price_updated,
+  fact.country_name,
+  fact.product_name,
+  fact.sku,
+  fact.company_name,
+  fact.quantity,
+  fact.turnaround,
+  dim.turnaround_type,
+  fact.material,
+  fact.size,
+  fact.cover,
+  fact.finishing,
 -- helloprint,
-   SUM(CASE WHEN company_name = 'Helloprint' THEN price ELSE NULL END) as price_helloprint,
-   SUM(CASE WHEN company_name = 'Helloprint' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as helloprint_partition,
+   SUM(CASE WHEN fact.company_name = 'Helloprint' THEN fact.price ELSE NULL END) as price_helloprint,
+   SUM(CASE WHEN fact.company_name = 'Helloprint' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as helloprint_partition,
 -- helloprint_connect,
-   SUM(CASE WHEN company_name = 'Helloprint Connect' THEN price ELSE NULL END) as price_helloprint_connect,
-   SUM(CASE WHEN company_name = 'Helloprint Connect' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as helloprint_connect_partition,
+   SUM(CASE WHEN fact.company_name = 'Helloprint Connect' THEN fact.price ELSE NULL END) as price_helloprint_connect,
+   SUM(CASE WHEN fact.company_name = 'Helloprint Connect' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as helloprint_connect_partition,
 -- printoclock,
-   SUM(CASE WHEN company_name = 'printoclock' THEN price ELSE NULL END) as price_printoclock,
-   SUM(CASE WHEN company_name = 'printoclock' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as printoclock_partition,
+   SUM(CASE WHEN fact.company_name = 'printoclock' THEN fact.price ELSE NULL END) as price_printoclock,
+   SUM(CASE WHEN fact.company_name = 'printoclock' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as printoclock_partition,
 -- realisaprint
-   SUM(CASE WHEN company_name = 'realisaprint' THEN price ELSE NULL END) as price_realisaprint,
-   SUM(CASE WHEN company_name = 'realisaprint' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as realisaprint_partition,
+   SUM(CASE WHEN fact.company_name = 'realisaprint' THEN fact.price ELSE NULL END) as price_realisaprint,
+   SUM(CASE WHEN fact.company_name = 'realisaprint' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as realisaprint_partition,
 -- flyeralarm
-   SUM(CASE WHEN company_name = 'flyeralarm' THEN price ELSE NULL END) as price_flyeralarm,
-   SUM(CASE WHEN company_name = 'flyeralarm' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as flyeralarm_partition
+   SUM(CASE WHEN fact.company_name = 'flyeralarm' THEN fact.price ELSE NULL END) as price_flyeralarm,
+   SUM(CASE WHEN fact.company_name = 'flyeralarm' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as flyeralarm_partition
 FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }} fact
 INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON 
   fact.date_price_updated = dim.date_price_updated AND
@@ -37,7 +37,7 @@ INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON
   fact.sku = dim.sku AND
   fact.company_name = dim.company_name
 
-ORDER BY SKU ASC, date_price_updated ASC),
+ORDER BY fact.sku ASC, fact.date_price_updated ASC),
 -----------------------------------------------------------------------------------------------------
 
 -- At this step, null values of competitor price columns are filled with previous non-null price.
