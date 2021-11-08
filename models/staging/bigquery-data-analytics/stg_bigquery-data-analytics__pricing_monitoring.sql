@@ -18,7 +18,7 @@ filtered_renamed AS (
         quantity,
         turnaround,
         material,
-        SIZE,
+        size,
         cover,
         finishing,
         MAX(
