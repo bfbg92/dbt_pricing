@@ -4,11 +4,13 @@ WITH turnaround_fastest AS (
     country_name,
     company_name,
     LOWER(product_name) AS product_name,
-    sku,
+    CONCAT(LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)),'-',MIN(turnaround)) AS sku,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
-    'fastest' AS turnaround_type
+    'fastest' AS turnaround_type,
+    MIN(turnaround) AS turnaround
   FROM
     {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }}
+  GROUP BY 1,2,3,4,5,6
 ),
 turnaround_slowest AS (
   SELECT
@@ -16,11 +18,13 @@ turnaround_slowest AS (
     country_name,
     company_name,
     LOWER(product_name) AS product_name,
-    sku,
+    CONCAT(LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)),'-',MIN(turnaround)) AS sku,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
-    'slowest' AS turnaround_type
+    'slowest' AS turnaround_type,
+    MAX(turnaround) AS turnaround
   FROM
     {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }}
+  GROUP BY 1,2,3,4,5,6
 ),
 union_data AS (
   SELECT

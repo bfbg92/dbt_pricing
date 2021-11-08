@@ -98,3 +98,7 @@ models:
         description: "todo"
         tests:
           - not_null
+      - name: turnaround_type
+        description: "todo"
+        tests:
+          - not_null
