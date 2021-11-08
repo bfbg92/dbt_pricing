@@ -28,7 +28,7 @@ SELECT
    SUM(CASE WHEN company_name = 'realisaprint' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as realisaprint_partition,
 -- flyeralarm
    SUM(CASE WHEN company_name = 'flyeralarm' THEN price ELSE NULL END) as price_flyeralarm,
-   SUM(CASE WHEN company_name = 'flyeralarm' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as flyeralarm_partition,
+   SUM(CASE WHEN company_name = 'flyeralarm' AND price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) as flyeralarm_partition
 FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }} fact
 INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON 
   fact.date_price_updated = dim.date_price_updated AND
