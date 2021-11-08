@@ -15,19 +15,19 @@ SELECT
   fact.cover,
   fact.finishing,
 -- helloprint,
-   SUM(CASE WHEN fact.company_name = 'Helloprint' THEN fact.price ELSE NULL END) as price_helloprint,
+   SUM(CASE WHEN fact.company_name = 'Helloprint' THEN fact.price ELSE NULL END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as price_helloprint,
    SUM(CASE WHEN fact.company_name = 'Helloprint' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as helloprint_partition,
 -- helloprint_connect,
-   SUM(CASE WHEN fact.company_name = 'Helloprint Connect' THEN fact.price ELSE NULL END) as price_helloprint_connect,
+   SUM(CASE WHEN fact.company_name = 'Helloprint Connect' THEN fact.price ELSE NULL END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as price_helloprint_connect,
    SUM(CASE WHEN fact.company_name = 'Helloprint Connect' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as helloprint_connect_partition,
 -- printoclock,
-   SUM(CASE WHEN fact.company_name = 'printoclock' THEN fact.price ELSE NULL END) as price_printoclock,
+   SUM(CASE WHEN fact.company_name = 'printoclock' THEN fact.price ELSE NULL END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as price_printoclock,
    SUM(CASE WHEN fact.company_name = 'printoclock' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as printoclock_partition,
 -- realisaprint
-   SUM(CASE WHEN fact.company_name = 'realisaprint' THEN fact.price ELSE NULL END) as price_realisaprint,
+   SUM(CASE WHEN fact.company_name = 'realisaprint' THEN fact.price ELSE NULL END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as price_realisaprint,
    SUM(CASE WHEN fact.company_name = 'realisaprint' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as realisaprint_partition,
 -- flyeralarm
-   SUM(CASE WHEN fact.company_name = 'flyeralarm' THEN fact.price ELSE NULL END) as price_flyeralarm,
+   SUM(CASE WHEN fact.company_name = 'flyeralarm' THEN fact.price ELSE NULL END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as price_flyeralarm,
    SUM(CASE WHEN fact.company_name = 'flyeralarm' AND fact.price IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY fact.country_name, fact.product_name, fact.sku ORDER BY fact.date_price_updated ASC) as flyeralarm_partition
 FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring_2') }} fact
 INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON 
@@ -36,7 +36,6 @@ INNER JOIN {{ ref('dim_sku_turnaround_type') }} dim ON
   fact.product_name = dim.product_name AND
   fact.sku = dim.sku AND
   fact.company_name = dim.company_name
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12
 ORDER BY fact.sku ASC, fact.date_price_updated ASC),
 -----------------------------------------------------------------------------------------------------
 
