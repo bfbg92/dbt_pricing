@@ -41,7 +41,6 @@ SELECT
   product_name,
   sku,
   sku_no_turnaround,
-  company_name,
   quantity,
   turnaround,
   turnaround_type,
