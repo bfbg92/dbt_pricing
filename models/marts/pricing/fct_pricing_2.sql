@@ -83,14 +83,19 @@ size,
 cover,
 finishing,
 -- helloprint,
+helloprint_partition AS price_helloprint_is_real,
 FIRST_VALUE(price_helloprint) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, helloprint_partition ORDER BY date_price_updated ASC) as price_helloprint,
 -- helloprint_connect,
+helloprint_connect_partition AS price_helloprint_connect_is_real,
 FIRST_VALUE(price_helloprint_connect) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, helloprint_connect_partition ORDER BY date_price_updated) as price_helloprint_connect,
 -- printoclock,
+printoclock_partition AS price_printoclock_is_real,
 FIRST_VALUE(price_printoclock) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, printoclock_partition ORDER BY date_price_updated) as price_printoclock,
 -- realisaprint
+realisaprint_partition AS price_realisaprint_is_real,
 FIRST_VALUE(price_realisaprint) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, realisaprint_partition ORDER BY date_price_updated) as price_realisaprint,
 -- flyeralarm
+flyeralarm_partition AS price_flyeralarm_is_real,
 FIRST_VALUE(price_flyeralarm) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, flyeralarm_partition ORDER BY date_price_updated) as price_flyeralarm,
 FROM fill_nulls_temp),
 -----------------------------------------------------------------------------------------------------
@@ -112,18 +117,23 @@ size,
 cover,
 finishing,
 -- helloprint
+price_helloprint_is_real,
 price_helloprint,
 LAG(price_helloprint, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_helloprint,
 -- helloprint_connect
+price_helloprint_connect_is_real,
 price_helloprint_connect,
 LAG(price_helloprint_connect, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_helloprint_connect,
 -- printoclock
+price_printoclock_is_real,
 price_printoclock,
 LAG(price_printoclock, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_printoclock,
 -- realisaprint
+price_realisaprint_is_real,
 price_realisaprint,
 LAG(price_realisaprint, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_realisaprint,
 -- flyeralarm
+price_flyeralarm_is_real,
 price_flyeralarm,
 LAG(price_flyeralarm, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_flyeralarm
 FROM fill_nulls)
@@ -145,18 +155,23 @@ size,
 cover,
 finishing,
 -- helloprint
+price_helloprint_is_real,
 price_helloprint,
 CASE WHEN price_lag_helloprint IS NOT NULL THEN price_helloprint - price_lag_helloprint END as price_variation_helloprint,
 -- helloprint_connect
+price_helloprint_connect_is_real,
 price_helloprint_connect,
 CASE WHEN price_lag_helloprint_connect IS NOT NULL THEN price_helloprint_connect - price_lag_helloprint_connect END as price_variation_helloprint_connect,
 -- printoclock
+price_printoclock_is_real,
 price_printoclock,
 CASE WHEN price_lag_printoclock IS NOT NULL THEN price_printoclock - price_lag_printoclock END as price_variation_printoclock,
 -- realisaprint
+price_realisaprint_is_real,
 price_realisaprint,
 CASE WHEN price_lag_realisaprint IS NOT NULL THEN price_realisaprint - price_lag_realisaprint END as price_variation_realisaprint,
 -- flyeralarm
+price_flyeralarm_is_real,
 price_flyeralarm,
 CASE WHEN price_lag_flyeralarm IS NOT NULL THEN price_flyeralarm - price_lag_flyeralarm END as price_variation_flyeralarm
 
