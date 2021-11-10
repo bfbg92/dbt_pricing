@@ -30,8 +30,7 @@ LEFT JOIN {{ ref('dim_sku_turnaround_type') }} stt ON
   pm.date_price_updated = stt.date_price_updated AND
   pm.country_name = stt.country_name AND
   pm.product_name = stt.product_name AND
-  pm.sku = stt.sku AND
-  pm.company_name = stt.company_name
+  pm.sku = stt.sku
 ),
 
 fill_nulls_temp as (
