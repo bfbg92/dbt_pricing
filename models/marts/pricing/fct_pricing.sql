@@ -10,7 +10,7 @@ SELECT
   stt.sku_no_turnaround, --NULL if not slowest/fastest turnaround
   pm.quantity,
   pm.turnaround,
-  coalesce(stt.turnaround_type, 'between'),
+  coalesce(stt.turnaround_type, 'between') AS turnaround_type,
   pm.material,
   pm.size,
   pm.cover,
