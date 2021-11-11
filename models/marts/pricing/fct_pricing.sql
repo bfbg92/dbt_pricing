@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 /* input parameters */
-{% set companies = {{ var('pricing_companies') }} %}
+{% set companies = var('pricing_companies') %}
 
 
 WITH 

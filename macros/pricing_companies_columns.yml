@@ -1,0 +1,14 @@
+{% pricing_companies_columns %}
+{% set companies = var('pricing_companies') %}
+{% for company in companies -%}
+      - name: price_{{ company }}_is_real
+        description: "Indication if the {{ company }} price is real or interpolated"
+      - name: price_{{ company }}
+        description: "SKU Price of competition: {{ company }}"
+      - name: price_variation_{{ company }}
+        description: "{{ company }} price difference between the respective spider-run-date and the previous spider-run-date"
+{% endfor -%}
+{% endmacro %}
+
+
+

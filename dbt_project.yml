@@ -38,4 +38,4 @@ models:
 
 # Define variables here
 vars:
-  pricing_companies: ['helloprint', 'helloprint_connect', 'printoclock', 'realisaprint', 'flyeralarm']
+  pricing_companies: [helloprint, helloprint_connect, printoclock, realisaprint, flyeralarm]
