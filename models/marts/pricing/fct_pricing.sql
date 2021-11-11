@@ -1,5 +1,9 @@
 {{ config(materialized='table') }}
 
+/* input parameters */
+{% set companies = ['helloprint', 'helloprint_connect', 'printoclock', 'realisaprint', 'flyeralarm'] %}
+
+
 WITH 
 join_turnaround_type AS (
 SELECT 
@@ -53,21 +57,14 @@ SELECT
   cost_price,
   supplier_price,
   carrier_cost,
-  -- helloprint,
-   price_helloprint,
-   SUM(CASE WHEN price_helloprint IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as helloprint_partition,
--- helloprint_connect,
-   price_helloprint_connect,
-   SUM(CASE WHEN price_helloprint_connect IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as helloprint_connect_partition,
--- printoclock,
-   price_printoclock,
-   SUM(CASE WHEN price_printoclock IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as printoclock_partition,
--- realisaprint
-   price_realisaprint,
-   SUM(CASE WHEN price_realisaprint IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as realisaprint_partition,
--- flyeralarm
-   price_flyeralarm,
-   SUM(CASE WHEN price_flyeralarm IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as flyeralarm_partition
+
+  {% for company in companies %}
+  (
+     price_{{ company }},
+     price_{{ company }},
+     SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as {{ company }}_partition,
+  )
+  {% endfor %}
 FROM join_turnaround_type),
 -----------------------------------------------------------------------------------------------------
 
