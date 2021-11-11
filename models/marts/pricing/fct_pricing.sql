@@ -26,7 +26,7 @@ WITH
          {% for company in companies -%}
          price_{{ company }}
          {%- if not loop.last %},{% endif %}
-         {% endfor %} --
+         {% endfor -%}
       FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }} pm
       LEFT JOIN {{ ref('dim_sku_turnaround_type') }} stt ON 
          pm.date_price_updated = stt.date_price_updated AND
@@ -57,7 +57,7 @@ WITH
          price_{{ company }},
          SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as {{ company }}_partition
          {%- if not loop.last %},{% endif %}
-         {% endfor %}
+         {% endfor -%}
       FROM join_turnaround_type
    ),
 
@@ -84,7 +84,7 @@ WITH
          CASE WHEN {{ company }}_partition = LAG({{ company }}_partition, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) THEN FALSE ELSE TRUE END AS price_{{ company }}_is_real,
          FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, {{ company }}_partition ORDER BY date_price_updated ASC) as price_{{ company }}
          {%- if not loop.last %},{% endif %}
-         {% endfor %}
+         {% endfor -%}
       FROM fill_nulls_temp
       ),
 
@@ -112,7 +112,7 @@ WITH
          price_{{ company }},
          LAG(price_{{ company }}, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS price_lag_{{ company }}
          {%- if not loop.last %},{% endif %}
-         {% endfor %}
+         {% endfor -%}
       FROM fill_nulls
       )
 
@@ -139,5 +139,5 @@ SELECT
    price_{{ company }},
    CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END as price_variation_{{ company }},
    {%- if not loop.last %},{% endif %}
-   {% endfor %}
+   {% endfor -%}
 FROM price_variation
