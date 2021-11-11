@@ -59,7 +59,6 @@ SELECT
   carrier_cost,
   {% for company in companies %}
      price_{{ company }},
-     price_{{ company }},
      SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as {{ company }}_partition,
   {% endfor %}
 FROM join_turnaround_type),
