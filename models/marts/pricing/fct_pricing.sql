@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 /* input parameters */
-{% set companies = ['helloprint', 'helloprint_connect', 'printoclock', 'realisaprint', 'flyeralarm'] %}
+{% set companies = {{ var('pricing_companies') }} %}
 
 
 WITH 
