@@ -35,7 +35,7 @@ WITH
          pm.sku = stt.sku
    ),
 
-   fill_nulls_temp as (
+   fill_nulls_temp AS (
       SELECT 
          date_price_updated,
          country_name,
@@ -55,7 +55,7 @@ WITH
          /* loop through companies */
          {% for company in companies -%}
          price_{{ company }},
-         SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) as {{ company }}_partition
+         SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) AS {{ company }}_partition
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM join_turnaround_type
@@ -82,7 +82,7 @@ WITH
          /* loop through companies */
          {% for company in companies -%}
          CASE WHEN {{ company }}_partition = LAG({{ company }}_partition, 1) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type ORDER BY date_price_updated ASC) THEN FALSE ELSE TRUE END AS price_{{ company }}_is_real,
-         FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, {{ company }}_partition ORDER BY date_price_updated ASC) as price_{{ company }}
+         FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, sku_no_turnaround, turnaround_type, {{ company }}_partition ORDER BY date_price_updated ASC) AS price_{{ company }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM fill_nulls_temp
@@ -137,7 +137,7 @@ SELECT
    {% for company in companies -%}
    price_{{ company }}_is_real,
    price_{{ company }},
-   CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END as price_variation_{{ company }},
+   CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END AS price_variation_{{ company }}
    {%- if not loop.last %},{% endif %}
    {% endfor -%}
 FROM price_variation
