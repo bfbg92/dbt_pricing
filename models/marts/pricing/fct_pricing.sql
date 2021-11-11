@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 /* input parameters */
-{% set companies = ['{{ company }}', '{{ company }}_connect', 'printoclock', 'realisaprint', 'flyeralarm'] %}
+{% set companies = ['helloprint', 'helloprint_connect', 'printoclock', 'realisaprint', 'flyeralarm'] %}
 
 
 WITH 
