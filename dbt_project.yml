@@ -35,3 +35,8 @@ models:
 
     staging:
         +materialized: view
+
+# Define variables here
+vars:
+  pricing_companies: [helloprint, helloprint_connect, printoclock, realisaprint, flyeralarm]
+  pricing_competitors: [printoclock, realisaprint, flyeralarm]
