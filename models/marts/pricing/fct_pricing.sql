@@ -2,6 +2,7 @@
 
 /* input parameters */
 {% set companies = var('pricing_companies') %}
+{% set competitors = var('pricing_competitors') %}
 
 
 WITH 
@@ -116,7 +117,7 @@ WITH
       FROM fill_nulls
       )
 
--- Finally, price variations are computed.
+-- Finally, the following metrics are computed per company: price_variation, GPM.
 SELECT
    date_price_updated,
    country_name,
@@ -137,7 +138,23 @@ SELECT
    {% for company in companies -%}
    price_{{ company }}_is_real,
    price_{{ company }},
-   CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END AS price_variation_{{ company }}
+   CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END AS price_variation_{{ company }},
+   (price_{{ company }} - cost_price)/price_{{ company }} AS gpm_{{ company }},
+   {% endfor -%}
+   /* loop through competitors */
+   {% for competitor in competitors -%}
+   price_helloprint - price_{{ competitor }} AS helloprint_diff_{{ competitor }},
+   price_helloprint_connect - price_{{ competitor }} AS helloprint_connect_diff_{{ competitor }},
+   CASE
+      WHEN price_helloprint = price_{{ competitor }} THEN 'Same'
+      WHEN price_helloprint > price_{{ competitor }} THEN 'Higher'
+      WHEN price_helloprint < price_{{ competitor }} THEN 'Lower'      
+      ELSE 'Unknown' END AS helloprint_vs_{{ competitor }},
+   CASE
+      WHEN price_helloprint_connect = price_{{ competitor }} THEN 'Same'
+      WHEN price_helloprint_connect > price_{{ competitor }} THEN 'Higher'
+      WHEN price_helloprint_connect < price_{{ competitor }} THEN 'Lower'      
+      ELSE 'Unknown' END AS helloprint_connect_vs_{{ competitor }}
    {%- if not loop.last %},{% endif %}
    {% endfor -%}
 FROM price_variation

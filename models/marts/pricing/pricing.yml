@@ -76,39 +76,78 @@ models:
         description: "Product Attribute: cover"
       - name: finishing
         description: "Product Attribute: finishing"
-      - name: price_helloprint_is_real
-        description: "Indication if the helloprint price is real or interpolated"
-      - name: price_helloprint
-        description: "SKU Price of competition: helloprint"
-      - name: price_variation_helloprint
-        description: "Helloprint price difference between the respective spider-run-date and the previous spider-run-date"
-      - name: price_helloprint_connect_is_real
-        description: "Indication if the helloprint connect price is real or interpolated"
-      - name: price_helloprint_connect
-        description: "SKU Price of competition: helloprint_connect"
-      - name: price_variation_helloprint_connect
-        description: "Helloprint Connect price difference between the respective spider-run-date and the previous spider-run-date"
-      - name: price_printoclock_is_real
-        description: "Indication if the printoclock price is real or interpolated"
-      - name: price_printoclock
-        description: "SKU Price of competition: printoclock"
-      - name: price_variation_printoclock
-        description: "Printoclock price difference between the respective spider-run-date and the previous spider-run-date"
-      - name: price_realisaprint_is_real
-        description: "Indication if the realisaprint price is real or interpolated"
-      - name: price_realisaprint
-        description: "SKU Price of competition: realisaprint"
-      - name: price_variation_realisaprint
-        description: "Realisaprint price difference between the respective spider-run-date and the previous spider-run-date"
-      - name: price_flyeralarm_is_real
-        description: "Indication if the flyeralarm price is real or interpolated"
-      - name: price_flyeralarm
-        description: "SKU Price of competition: flyeralarm"
-      - name: price_variation_flyeralarm
-        description: "FlyerAlarm price difference between the respective spider-run-date and the previous spider-run-date"
       - name: cost_price
         description: "SKU Cost Price for Helloprint"
       - name: supplier_price
         description: "SKU Supplier Price for Helloprint"
       - name: carrier_cost
         description: "SKU Carrier Cost for Helloprint"
+
+      - name: price_helloprint_is_real
+        description: "Indication if the helloprint price is real or interpolated"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_variation_helloprint
+        description: "Helloprint price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: gpm_helloprint
+        description: "Gross Profit Marging of helloprint"
+
+      - name: price_helloprint_connect_is_real
+        description: "Indication if the helloprint connect price is real or interpolated"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: price_variation_helloprint_connect
+        description: "Helloprint Connect price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: gpm_helloprint_connect
+        description: "Gross Profit Marging of helloprint_connect"
+
+      - name: price_printoclock_is_real
+        description: "Indication if the printoclock price is real or interpolated"
+      - name: price_printoclock
+        description: "SKU Price of competition: printoclock"
+      - name: price_variation_printoclock
+        description: "Printoclock price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: gpm_printoclock
+        description: "Gross Profit Marging of helloprint using printoclock price"
+      - name: helloprint_diff_printoclock
+        description: "Price difference between helloprint and printoclock"
+      - name: helloprint_connect_diff_printoclock
+        description: "Price difference between helloprint_connect and printoclock"
+      - name: helloprint_vs_printoclock
+        description: "Label higher/same/lower price between helloprint and printoclock"
+      - name: helloprint_connect_vs_printoclock
+        description: "Label higher/same/lower price between helloprint_connect and printoclock"
+
+      - name: price_realisaprint_is_real
+        description: "Indication if the realisaprint price is real or interpolated"
+      - name: price_realisaprint
+        description: "SKU Price of competition: realisaprint"
+      - name: price_variation_realisaprint
+        description: "Realisaprint price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: gpm_realisaprint
+        description: "Gross Profit Marging of helloprint using realisaprint price"
+      - name: helloprint_diff_realisaprint
+        description: "Price difference between helloprint and realisaprint"
+      - name: helloprint_connect_diff_realisaprint
+        description: "Price difference between helloprint_connect and realisaprint"
+      - name: helloprint_vs_realisaprint
+        description: "Label higher/same/lower price between helloprint and realisaprint"
+      - name: helloprint_connect_vs_realisaprint
+        description: "Label higher/same/lower price between helloprint_connect and realisaprint"
+
+      - name: price_flyeralarm_is_real
+        description: "Indication if the flyeralarm price is real or interpolated"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_variation_flyeralarm
+        description: "FlyerAlarm price difference between the respective spider-run-date and the previous spider-run-date"
+      - name: gpm_flyeralarm
+        description: "Gross Profit Marging of helloprint using flyeralarm price"
+      - name: helloprint_diff_flyeralarm
+        description: "Price difference between helloprint and flyeralarm"
+      - name: helloprint_connect_diff_flyeralarm
+        description: "Price difference between helloprint_connect and flyeralarm"
+      - name: helloprint_vs_flyeralarm
+        description: "Label higher/same/lower price between helloprint and flyeralarm"
+      - name: helloprint_connect_vs_flyeralarm
+        description: "Label higher/same/lower price between helloprint_connect and flyeralarm"
