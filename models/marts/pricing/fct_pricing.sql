@@ -109,7 +109,7 @@ WITH
          carrier_cost,
          /* loop through companies */
          {% for company in companies -%}
-         price_{{ company }}_is_real,
+         CASE WHEN price_{{ company }} IS NULL THEN NULL ELSE price_{{ company }}_is_real END AS price_{{ company }}_is_real,
          price_{{ company }},
          LAG(price_{{ company }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) AS price_lag_{{ company }}
          {%- if not loop.last %},{% endif %}
