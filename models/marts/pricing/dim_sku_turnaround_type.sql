@@ -42,7 +42,7 @@ union_data AS (
         tf.date_price_updated = ts.date_price_updated
         AND tf.country_name = ts.country_name
         AND tf.product_name = ts.product_name
-        AND tf.CONCAT(sku_no_turnaround, '-', turnaround) = ts.CONCAT(sku_no_turnaround, '-', turnaround)
+        AND CONCAT(tf.sku_no_turnaround, '-', tf.turnaround) = CONCAT(ts.sku_no_turnaround, '-', ts.turnaround)
         )
   )
 
