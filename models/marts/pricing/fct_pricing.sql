@@ -119,6 +119,7 @@ WITH
 
 -- Finally, the following metrics are computed per company: price_variation, GPM.
 SELECT
+   {{ dbt_utils.surrogate_key(['date_price_updated', 'country_name', 'product_name', 'sku']) }} as pricing_id,
    date_price_updated,
    country_name,
    product_name,

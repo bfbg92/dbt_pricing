@@ -4,6 +4,11 @@ models:
   - name: dim_sku_turnaround_type
     description: "TODO"
     columns:
+      - name: pricing_id
+        description: "unique key"
+        tests:
+          - not_null
+          - unique
       - name: date_price_updated
         description: "Date when spider ran and prices were fetched from"
         tests:
