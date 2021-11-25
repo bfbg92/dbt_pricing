@@ -1,6 +1,10 @@
 {{
     config(
         materialized='incremental',
+        partition_by={
+           'field': 'spider_run_at',
+           'data_type': 'date',
+           'granularity': 'day'},
         unique_key='pricing_id',
         on_schema_change='fail',
         incremental_strategy='insert_overwrite'
@@ -41,6 +45,9 @@ WITH
          pm.country_name = stt.country_name AND
          pm.product_name = stt.product_name AND
          pm.sku = stt.sku
+      {% if is_incremental() %}
+      WHERE pm.spider_run_at >= (SELECT max(pm.spider_run_at) FROM {{ this }})
+      {% endif %}
    ),
 
    fill_nulls_temp AS (
@@ -166,7 +173,3 @@ SELECT
    {%- if not loop.last %},{% endif %}
    {% endfor -%}
 FROM price_variation
-{% if is_incremental() %}
-  WHERE spider_run_at >= (SELECT max(spider_run_at) FROM {{ this }})
-{% endif %}
-
