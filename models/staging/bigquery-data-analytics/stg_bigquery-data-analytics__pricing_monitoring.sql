@@ -2,7 +2,7 @@ WITH
 
 filtered_renamed AS (
   SELECT
-    CAST(time_price_updated AS DATE) AS date_price_updated,
+    CAST(time_price_updated AS DATE) AS spider_run_at,
     country_name,
     LOWER(product_name) AS product_name,
     sku,
@@ -45,9 +45,7 @@ filtered_renamed AS (
     AND competitor_name IN ('printoclock', 'realisaprint', 'flyeralarm')
     AND salesprice_comp_r1 IS NOT NULL
     AND salesprice_comp_r1 > 0
-    -- AND salesprice_comp_all IS NOT NULL
-    -- AND salesprice_comp_all > 0
     GROUP BY 1,2,3,4,5,6,7,8,9,10
     )
 
-SELECT * FROM filtered_renamed
+SELECT * FROM filtered_renamed 

@@ -4,7 +4,7 @@ models:
   - name: stg_bigquery-data-analytics__pricing_monitoring
     description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
     columns:
-      - name: date_price_updated
+      - name: spider_run_at
         description: "Date when spider ran and the pricing values were fetched"
         tests:
           - not_null

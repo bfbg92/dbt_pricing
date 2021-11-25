@@ -1,4 +1,11 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='pricing_id',
+        on_schema_change='fail',
+        incremental_strategy='insert_overwrite'
+    )
+}}
 
 /* input parameters */
 {% set companies = var('pricing_companies') %}
@@ -8,7 +15,7 @@
 WITH 
    join_turnaround_type AS (
       SELECT 
-         pm.date_price_updated,
+         pm.spider_run_at,
          pm.country_name,
          pm.product_name,
          pm.sku,
@@ -30,7 +37,7 @@ WITH
          {% endfor -%}
       FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }} pm
       LEFT JOIN {{ ref('dim_sku_turnaround_type') }} stt ON 
-         pm.date_price_updated = stt.date_price_updated AND
+         pm.spider_run_at = stt.spider_run_at AND
          pm.country_name = stt.country_name AND
          pm.product_name = stt.product_name AND
          pm.sku = stt.sku
@@ -38,7 +45,7 @@ WITH
 
    fill_nulls_temp AS (
       SELECT 
-         date_price_updated,
+         spider_run_at,
          country_name,
          product_name,
          sku,
@@ -56,7 +63,7 @@ WITH
          /* loop through companies */
          {% for company in companies -%}
          price_{{ company }},
-         SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) AS {{ company }}_partition
+         SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) AS {{ company }}_partition
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM join_turnaround_type
@@ -65,7 +72,7 @@ WITH
    -- At this step, null values of competitor price columns are filled with previous non-null price.
    fill_nulls AS (
       SELECT
-         date_price_updated,
+         spider_run_at,
          country_name,
          product_name,
          sku,
@@ -82,8 +89,8 @@ WITH
          carrier_cost,
          /* loop through companies */
          {% for company in companies -%}
-         CASE WHEN {{ company }}_partition = LAG({{ company }}_partition, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) THEN FALSE ELSE TRUE END AS price_{{ company }}_is_real,
-         FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, product_name, sku, {{ company }}_partition ORDER BY date_price_updated ASC) AS price_{{ company }}
+         CASE WHEN {{ company }}_partition = LAG({{ company }}_partition, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) THEN FALSE ELSE TRUE END AS price_{{ company }}_is_real,
+         FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, product_name, sku, {{ company }}_partition ORDER BY spider_run_at ASC) AS price_{{ company }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM fill_nulls_temp
@@ -92,7 +99,7 @@ WITH
    -- At this step, previous competitor price columns are generated (price_lag).
    price_variation AS (
       SELECT
-         date_price_updated,
+         spider_run_at,
          country_name,
          product_name,
          sku,
@@ -111,7 +118,7 @@ WITH
          {% for company in companies -%}
          CASE WHEN price_{{ company }} IS NULL THEN NULL ELSE price_{{ company }}_is_real END AS price_{{ company }}_is_real,
          price_{{ company }},
-         LAG(price_{{ company }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY date_price_updated ASC) AS price_lag_{{ company }}
+         LAG(price_{{ company }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) AS price_lag_{{ company }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM fill_nulls
@@ -119,8 +126,8 @@ WITH
 
 -- Finally, the following metrics are computed per company: price_variation, GPM.
 SELECT
-   {{ dbt_utils.surrogate_key(['date_price_updated', 'country_name', 'product_name', 'sku']) }} as pricing_id,
-   date_price_updated,
+   {{ dbt_utils.surrogate_key(['spider_run_at', 'country_name', 'product_name', 'sku']) }} as pricing_id,
+   spider_run_at,
    country_name,
    product_name,
    sku,
@@ -159,3 +166,7 @@ SELECT
    {%- if not loop.last %},{% endif %}
    {% endfor -%}
 FROM price_variation
+{% if is_incremental() %}
+  WHERE spider_run_at >= (SELECT max(spider_run_at) FROM {{ this }})
+{% endif %}
+
