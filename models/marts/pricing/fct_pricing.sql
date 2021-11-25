@@ -7,7 +7,7 @@
            'granularity': 'day'},
         unique_key='pricing_id',
         on_schema_change='fail',
-        incremental_strategy='insert_overwrite'
+        incremental_strategy='merge'
     )
 }}
 
