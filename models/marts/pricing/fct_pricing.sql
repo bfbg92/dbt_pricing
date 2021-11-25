@@ -46,7 +46,7 @@ WITH
          pm.product_name = stt.product_name AND
          pm.sku = stt.sku
       {% if is_incremental() %}
-      WHERE pm.spider_run_at >= (SELECT max(pm.spider_run_at) FROM {{ this }})
+      WHERE pm.spider_run_at > (SELECT max(pm.spider_run_at) FROM {{ this }})
       {% endif %}
    ),
 
