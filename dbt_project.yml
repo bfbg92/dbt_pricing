@@ -38,5 +38,7 @@ models:
 
 # Define variables here
 vars:
+  pricing_countries: [France]
   pricing_companies: [helloprint, helloprint_connect, printoclock, realisaprint, flyeralarm]
   pricing_competitors: [printoclock, realisaprint, flyeralarm]
+  pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes]
