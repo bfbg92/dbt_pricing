@@ -19,17 +19,16 @@ filtered_renamed AS (
     size,
     cover,
     finishing,
-   /* loop through competitors */
-   {% for competitor in competitors -%}
+    /* loop through competitors */
+    {% for competitor in competitors -%}
     MAX(
       if(
         competitor_name = '{{ competitor }}'
         AND competitor_price_comp_r1 > 0,
         competitor_price_comp_r1,
         NULL)
-    ) AS price_{{ competitor }}
-   {%- if not loop.last %},{% endif %}
-   {% endfor -%}
+    ) AS price_{{ competitor }},
+    {% endfor -%}
     MAX(salesprice_comp_r1) AS price_helloprint,
     MAX(salesprice_comp_all) AS price_helloprint_connect,
     MAX(cost_price) AS cost_price,
