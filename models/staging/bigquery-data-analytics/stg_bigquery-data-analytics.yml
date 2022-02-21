@@ -1,15 +1,11 @@
 version: 2
 
 models:
-  - name: stg_bigquery-data-analytics__pricing_monitoring
+  - name: stg_bigquery-data-analytics__pricing_monitoring_france
     description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
     columns:
-      - name: spider_run_at
+      - name: spider_update_at
         description: "Date when spider ran and the pricing values were fetched"
-        tests:
-          - not_null
-      - name: country_name
-        description: "Country of the shop where prices where fetched"
         tests:
           - not_null
       - name: product_name
@@ -40,12 +36,20 @@ models:
         description: "Product Attribute: cover"
       - name: finishing
         description: "Product Attribute: finishing"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_flyeralarm_new
+        description: "SKU Price of competition: flyeralarm_new"
       - name: price_printoclock
         description: "SKU Price of competition: printoclock"
       - name: price_realisaprint
         description: "SKU Price of competition: realisaprint"
-      - name: price_flyeralarm
-        description: "SKU Price of competition: flyeralarm"
+      - name: price_Onlineprinters-feed
+        description: "SKU Price of competition: Onlineprinters-feed"
+      - name: price_pixartprinting
+        description: "SKU Price of competition: pixartprinting"
+      - name: price_pixart_puppeteer
+        description: "SKU Price of competition: pixart_puppeteer"
       - name: price_helloprint
         description: "SKU Price of competition: helloprint"
       - name: price_helloprint_connect

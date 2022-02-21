@@ -38,13 +38,21 @@ models:
 
 # Define variables here
 vars:
-  pricing_countries: [France, Netherlands, Belgium, United Kingdom, Spain]
-  pricing_companies: [helloprint, helloprint_connect, printoclock, realisaprint, flyeralarm]
-  pricing_competitors: [printoclock, realisaprint, flyeralarm]
-  pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
+#   pricing_countries: [France, Netherlands, Belgium, United Kingdom, Spain]
+#   pricing_competitors: [printoclock, realisaprint, flyeralarm]
 
-  pricing_fr_competitors: [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer]
+  pricing_helloprint: [helloprint, helloprint_connect]
+  pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
+    
+  pricing_countries: [France, Spain]
+
+  pricing_competitors: {
+      'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer],
+      'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES]
+  }
 
   pricing_competitor_map_dict: {
       'flyeralarm' : ['flyeralarm_new', 'flyeralarm_alpha', 'flyeralarm_beta']
       }
+
+

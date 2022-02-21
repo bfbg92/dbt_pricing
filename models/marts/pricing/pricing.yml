@@ -9,7 +9,7 @@ models:
         tests:
           - not_null
           - unique
-      - name: spider_run_at
+      - name: spider_update_at
         description: "Date when spider ran and prices were fetched from"
         tests:
           - not_null
@@ -37,7 +37,7 @@ models:
   - name: fct_pricing
     description: "todo"
     columns:
-      - name: spider_run_at
+      - name: spider_update_at
         description: "Date when spider ran and the pricing values were fetched"
         tests:
           - not_null

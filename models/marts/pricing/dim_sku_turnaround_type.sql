@@ -2,7 +2,7 @@ WITH
 
 turnaround_slowest AS (
   SELECT
-    spider_run_at,
+    spider_update_at,
     country_name,
     product_name,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
@@ -14,7 +14,7 @@ turnaround_slowest AS (
 
 turnaround_fastest AS (
   SELECT
-    spider_run_at,
+    spider_update_at,
     country_name,
     product_name,
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
@@ -39,7 +39,7 @@ union_data AS (
       SELECT 1
       FROM turnaround_slowest ts
       WHERE
-        tf.spider_run_at = ts.spider_run_at
+        tf.spider_update_at = ts.spider_update_at
         AND tf.country_name = ts.country_name
         AND tf.product_name = ts.product_name
         AND CONCAT(tf.sku_no_turnaround, '-', tf.turnaround) = CONCAT(ts.sku_no_turnaround, '-', ts.turnaround)
