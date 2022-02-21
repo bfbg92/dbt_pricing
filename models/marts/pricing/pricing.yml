@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_sku_turnaround_type
+  - name: dim_sku_turnaround_type_France
     description: "TODO"
     columns:
       - name: pricing_id
@@ -34,7 +34,7 @@ models:
         tests:
           - not_null
 
-  - name: fct_pricing
+  - name: fct_pricing_France
     description: "todo"
     columns:
       - name: spider_update_at

@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_bigquery-data-analytics__pricing_monitoring_france
+  - name: stg_bigquery-data-analytics__pricing_monitoring_France
     description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
     columns:
       - name: spider_update_at
