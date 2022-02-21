@@ -13,7 +13,7 @@
 
 /* input parameters */
 {% set helloprint_models = var('pricing_helloprint') %}
-{% set competitors = var('pricing_competitors') %}
+{% set competitors = var('pricing_competitors_mapped') %}
 
 {% set france_competitors = namespace(value=['']) %}
 {% for k, v in competitors.items() if k == 'France' %}

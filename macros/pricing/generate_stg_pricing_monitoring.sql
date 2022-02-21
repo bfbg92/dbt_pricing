@@ -14,7 +14,7 @@ map_filter_rename AS (
     size,
     cover,
     finishing,
-    {{ map_comp(competitor_name) }} AS competitor_renamed,
+    {{ map_comp('competitor_name') }} AS competitor_renamed,
     competitor_price_comp_r1,
     salesprice_comp_r1 AS price_helloprint,
     salesprice_comp_all AS price_helloprint_connect,
