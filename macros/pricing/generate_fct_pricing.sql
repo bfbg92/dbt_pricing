@@ -95,7 +95,7 @@ WITH
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          CASE WHEN {{ model }}_partition = LAG({{ model }}_partition, 1) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ model }}_is_real,
-         FIRST_VALUE(price_{{ compemodeltitor }}) OVER (PARTITION BY product_name, sku, {{ model }}_partition ORDER BY spider_update_at ASC) AS price_{{ model }},
+         FIRST_VALUE(price_{{ model }}) OVER (PARTITION BY product_name, sku, {{ model }}_partition ORDER BY spider_update_at ASC) AS price_{{ model }},
          {% endfor -%}
 
          /* loop through competitors */
