@@ -51,7 +51,13 @@ vars:
       'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES]
   }
 
+  pricing_competitors_mapped: {
+      'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters, pixartprinting, pixart_puppeteer],
+      'Spain' : [flyeralarm, Onlineprinters, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES]
+  }
+
   pricing_competitor_map_dict: {
-      'flyeralarm' : ['flyeralarm_new', 'flyeralarm_alpha', 'flyeralarm_beta']
+      'flyeralarm' : ['flyeralarm_new', 'flyeralarm_alpha', 'flyeralarm_beta'],
+      'Onlineprinters' : ['Onlineprinters-feed']
       }
 
