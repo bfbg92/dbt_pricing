@@ -8,7 +8,7 @@ turnaround_slowest AS (
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
     'slowest' AS turnaround_type,
     MAX(turnaround) AS turnaround
-  FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }}
+  FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring_france') }}
   GROUP BY 1,2,3,4,5
   ),
 
@@ -20,7 +20,7 @@ turnaround_fastest AS (
     LEFT(sku, LENGTH(sku) - instr(REVERSE(sku), '-', 1, 1)) AS sku_no_turnaround,
     'fastest' AS turnaround_type,
     MIN(turnaround) AS turnaround
-  FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }}
+  FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring_france') }}
   GROUP BY 1,2,3,4,5
   ),
 

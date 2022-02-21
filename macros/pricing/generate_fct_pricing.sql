@@ -1,5 +1,6 @@
 {% macro generate_fct_pricing(country, helloprint_models, competitors)%}
 
+{% set reference = 'stg_bigquery-data-analytics__pricing_monitoring_'{{ country }} %}
 
 WITH 
    join_turnaround_type AS (
@@ -29,13 +30,12 @@ WITH
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
 
-      FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }} pm
+      FROM {{ reference }} pm
       LEFT JOIN {{ ref('dim_sku_turnaround_type') }} stt ON 
          pm.spider_update_at = stt.spider_update_at AND
          pm.country_name = stt.country_name AND
          pm.product_name = stt.product_name AND
          pm.sku = stt.sku
-      WHERE pm.country_name = '{{ country }}'
 
       {% if is_incremental() %}
       AND pm.spider_update_at > (SELECT max(pm.spider_update_at) FROM {{ this }})
@@ -79,7 +79,6 @@ WITH
    fill_nulls AS (
       SELECT
          spider_update_at,
-         country_name,
          product_name,
          sku,
          sku_no_turnaround,
