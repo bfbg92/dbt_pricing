@@ -25,7 +25,7 @@ map_filter_rename AS (
   WHERE
     country_name = '{{ country }}' AND
     product_name IN ('{{ "','".join(products) }}') AND
-    competitor_renamed IN ('{{ "','".join(competitors) }}') AND (
+    competitor_name IN ('{{ "','".join(competitors) }}') AND (
       (salesprice_comp_r1 IS NOT NULL AND salesprice_comp_r1 > 0) OR
       (salesprice_comp_all IS NOT NULL AND salesprice_comp_all > 0))),
 
