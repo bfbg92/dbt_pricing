@@ -167,7 +167,7 @@ models:
           - not_null
 
   - name: fct_pricing_Belgium
-    description:
+    description: fct_pricing_Belgium
 
     columns:
       - name: "pricing_id"
@@ -359,7 +359,7 @@ models:
         tests:
 
   - name: fct_pricing_France
-    description:
+    description: fct_pricing_France
 
     columns:
       - name: "pricing_id"
@@ -647,7 +647,7 @@ models:
         tests:
 
   - name: fct_pricing_Netherlands
-    description:
+    description: fct_pricing_Netherlands
 
     columns:
       - name: "pricing_id"
@@ -839,7 +839,7 @@ models:
         tests:
 
   - name: fct_pricing_Spain
-    description:
+    description: fct_pricing_Spain
 
     columns:
       - name: "pricing_id"
@@ -1127,7 +1127,7 @@ models:
         tests:
 
   - name: fct_pricing_United_Kingdom
-    description:
+    description: fct_pricing_United_Kingdom
 
     columns:
       - name: "pricing_id"
