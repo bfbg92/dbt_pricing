@@ -37,7 +37,7 @@ filtered_renamed AS (
       (salesprice_comp_r1 IS NOT NULL AND salesprice_comp_r1 > 0)
       OR
       (salesprice_comp_all IS NOT NULL AND salesprice_comp_all > 0))
-    GROUP BY 1,2,3,4,5,6,7,8,9,10
+    GROUP BY 1,2,3,4,5,6,7,8,9
     )
 
 SELECT * FROM filtered_renamed 

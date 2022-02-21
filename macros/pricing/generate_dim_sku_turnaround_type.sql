@@ -13,7 +13,7 @@ turnaround_slowest AS (
     'slowest' AS turnaround_type,
     MAX(turnaround) AS turnaround
   FROM {{ ref(stg_pricing_monitoring_country) }} pm
-  GROUP BY 1,2,3,4,5
+  GROUP BY 1,2,3,4
   ),
 
 turnaround_fastest AS (
@@ -24,7 +24,7 @@ turnaround_fastest AS (
     'fastest' AS turnaround_type,
     MIN(turnaround) AS turnaround
   FROM {{ ref(stg_pricing_monitoring_country) }} 
-  GROUP BY 1,2,3,4,5
+  GROUP BY 1,2,3,4
   ),
 
 union_data AS (
