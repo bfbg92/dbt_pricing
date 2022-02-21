@@ -1,4 +1,4 @@
-{% macro generate_stg_pricing_monitoring(country, competitors, products)%}
+{% macro generate_stg_pricing_monitoring(country, competitors, products) %}
 
 
 WITH 
