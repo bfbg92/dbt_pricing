@@ -1,11 +1,10 @@
-{% macro generate_fct_pricing(companies, competitors)%}
+{% macro generate_fct_pricing(country, helloprint_models, competitors)%}
 
 
 WITH 
    join_turnaround_type AS (
       SELECT 
-         pm.spider_run_at,
-         pm.country_name,
+         pm.spider_update_at,
          pm.product_name,
          pm.sku,
          stt.sku_no_turnaround, -- contains Null
@@ -19,25 +18,33 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-         /* loop through companies */
-         {% for company in companies -%}
-         price_{{ company }}
+
+         /* loop through helloprint_models */
+         {% for model in helloprint_models -%}
+         price_{{ model }},
+         {% endfor -%}
+         /* loop through competitors */
+         {% for competitor in competitors -%}
+         price_{{ competitor }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
+
       FROM {{ ref('stg_bigquery-data-analytics__pricing_monitoring') }} pm
       LEFT JOIN {{ ref('dim_sku_turnaround_type') }} stt ON 
-         pm.spider_run_at = stt.spider_run_at AND
+         pm.spider_update_at = stt.spider_update_at AND
          pm.country_name = stt.country_name AND
          pm.product_name = stt.product_name AND
          pm.sku = stt.sku
+      WHERE pm.country_name = '{{ country }}'
+
       {% if is_incremental() %}
-      WHERE pm.spider_run_at > (SELECT max(pm.spider_run_at) FROM {{ this }})
+      AND pm.spider_update_at > (SELECT max(pm.spider_update_at) FROM {{ this }})
       {% endif %}
    ),
 
    fill_nulls_temp AS (
       SELECT 
-         spider_run_at,
+         spider_update_at,
          country_name,
          product_name,
          sku,
@@ -52,10 +59,17 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-         /* loop through companies */
-         {% for company in companies -%}
-         price_{{ company }},
-         SUM(CASE WHEN price_{{ company }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) AS {{ company }}_partition
+
+         /* loop through helloprint_models */
+         {% for model in helloprint_models -%}
+         price_{{ model }},
+         SUM(CASE WHEN price_{{ model }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) AS {{ model }}_partition,
+         {% endfor -%}
+
+         /* loop through competitors */
+         {% for competitor in competitors -%}
+                  price_{{ competitor }},
+         SUM(CASE WHEN price_{{ competitor }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) AS {{ competitor }}_partition
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM join_turnaround_type
@@ -64,7 +78,7 @@ WITH
    -- At this step, null values of competitor price columns are filled with previous non-null price.
    fill_nulls AS (
       SELECT
-         spider_run_at,
+         spider_update_at,
          country_name,
          product_name,
          sku,
@@ -79,19 +93,27 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-         /* loop through companies */
-         {% for company in companies -%}
-         CASE WHEN {{ company }}_partition = LAG({{ company }}_partition, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) THEN FALSE ELSE TRUE END AS price_{{ company }}_is_real,
-         FIRST_VALUE(price_{{ company }}) OVER (PARTITION BY country_name, product_name, sku, {{ company }}_partition ORDER BY spider_run_at ASC) AS price_{{ company }}
+
+         /* loop through helloprint_models */
+         {% for model in helloprint_models -%}
+         CASE WHEN {{ model }}_partition = LAG({{ model }}_partition, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ model }}_is_real,
+         FIRST_VALUE(price_{{ compemodeltitor }}) OVER (PARTITION BY country_name, product_name, sku, {{ model }}_partition ORDER BY spider_update_at ASC) AS price_{{ model }},
+         {% endfor -%}
+
+         /* loop through competitors */
+         {% for competitor in competitors -%}
+         CASE WHEN {{ competitor }}_partition = LAG({{ competitor }}_partition, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ competitor }}_is_real,
+         FIRST_VALUE(price_{{ competitor }}) OVER (PARTITION BY country_name, product_name, sku, {{ competitor }}_partition ORDER BY spider_update_at ASC) AS price_{{ competitor }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
+
       FROM fill_nulls_temp
       ),
 
    -- At this step, previous competitor price columns are generated (price_lag).
    price_variation AS (
       SELECT
-         spider_run_at,
+         spider_update_at,
          country_name,
          product_name,
          sku,
@@ -106,20 +128,28 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-         /* loop through companies */
-         {% for company in companies -%}
-         CASE WHEN price_{{ company }} IS NULL THEN NULL ELSE price_{{ company }}_is_real END AS price_{{ company }}_is_real,
-         price_{{ company }},
-         LAG(price_{{ company }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_run_at ASC) AS price_lag_{{ company }}
+
+         /* loop through helloprint_models */
+         {% for model in helloprint_models -%}
+         CASE WHEN price_{{ model }} IS NULL THEN NULL ELSE price_{{ model }}_is_real END AS price_{{ model }}_is_real,
+         price_{{ model }},
+         LAG(price_{{ model }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) AS price_lag_{{ model }},
+         {% endfor -%}
+
+         /* loop through competitors */
+         {% for competitor in competitors -%}
+         CASE WHEN price_{{ competitor }} IS NULL THEN NULL ELSE price_{{ competitor }}_is_real END AS price_{{ competitor }}_is_real,
+         price_{{ competitor }},
+         LAG(price_{{ competitor }}, 1) OVER (PARTITION BY country_name, product_name, sku ORDER BY spider_update_at ASC) AS price_lag_{{ competitor }}
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
       FROM fill_nulls
       )
 
--- Finally, the following metrics are computed per company: price_variation, GPM.
+-- Finally, the following metrics are computed per helloprint_model/competitor: price_variation, GPM.
 SELECT
-   {{ dbt_utils.surrogate_key(['spider_run_at', 'country_name', 'product_name', 'sku']) }} as pricing_id,
-   spider_run_at,
+   {{ dbt_utils.surrogate_key(['spider_update_at', 'country_name', 'product_name', 'sku']) }} as pricing_id,
+   spider_update_at,
    country_name,
    product_name,
    sku,
@@ -134,15 +164,21 @@ SELECT
    cost_price,
    supplier_price,
    carrier_cost,
-   /* loop through companies */
-   {% for company in companies -%}
-   price_{{ company }}_is_real,
-   price_{{ company }},
-   CASE WHEN price_lag_{{ company }} IS NOT NULL THEN price_{{ company }} - price_lag_{{ company }} END AS price_variation_{{ company }},
-   (price_{{ company }} - cost_price)/price_{{ company }} AS gpm_{{ company }},
+
+   /* loop through helloprint_models */
+   {% for model in helloprint_models -%}
+   price_{{ model }}_is_real,
+   price_{{ model }},
+   CASE WHEN price_lag_{{ model }} IS NOT NULL THEN price_{{ model }} - price_lag_{{ model }} END AS price_variation_{{ model }},
+   (price_{{ model }} - cost_price)/price_{{ model }} AS gpm_{{ model }},
    {% endfor -%}
+
    /* loop through competitors */
    {% for competitor in competitors -%}
+   price_{{ competitor }}_is_real,
+   price_{{ competitor }},
+   CASE WHEN price_lag_{{ competitor }} IS NOT NULL THEN price_{{ competitor }} - price_lag_{{ competitor }} END AS price_variation_{{ competitor }},
+   (price_{{ competitor }} - cost_price)/price_{{ competitor }} AS gpm_{{ competitor }},
    price_helloprint - price_{{ competitor }} AS helloprint_diff_{{ competitor }},
    price_helloprint_connect - price_{{ competitor }} AS helloprint_connect_diff_{{ competitor }},
    CASE
@@ -157,6 +193,7 @@ SELECT
       ELSE 'Unknown' END AS helloprint_connect_vs_{{ competitor }}
    {%- if not loop.last %},{% endif %}
    {% endfor -%}
+
 FROM price_variation
 
 

@@ -2,7 +2,7 @@
     config(
         materialized='incremental',
         partition_by={
-           'field': 'spider_run_at',
+           'field': 'spider_update_at',
            'data_type': 'date',
            'granularity': 'day'},
         unique_key='pricing_id',
@@ -12,8 +12,14 @@
 }}
 
 /* input parameters */
-{% set companies = var('pricing_companies') %}
+{% set helloprint_models = var('pricing_helloprint') %}
 {% set competitors = var('pricing_competitors') %}
 
+{% set france_competitors = namespace(value=['']) %}
+{% for k, v in competitors.items() if k == 'France' %}
+    {% set france_competitors.value = v %}
+{% endfor %}
 
-{{ generate_fct_pricing(companies,competitors) }} 
+{{ log('Running some_macro:'  ~ competitors) }}
+
+{{ generate_fct_pricing('France', helloprint_models, france_competitors.value) }} 
