@@ -1,7 +1,7 @@
-{% macro map_comp(competitor)%}
-{% set competitor_dict = var('pricing_competitor_map_dict') %}
+{% macro map_case(competitor, dict)%}
+
 CASE
-{% for k, v in competitor_dict.items() %}
+{% for k, v in dict.items() %}
   {%- for i in v -%}
   WHEN '{{ i }}' = {{ competitor }} THEN '{{ k }}'
   {% endfor -%}

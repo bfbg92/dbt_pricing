@@ -38,26 +38,35 @@ models:
 
 # Define variables here
 vars:
-#   pricing_countries: [France, Netherlands, Belgium, United Kingdom, Spain]
-#   pricing_competitors: [printoclock, realisaprint, flyeralarm]
 
-  pricing_helloprint: [helloprint, helloprint_connect]
+  pricing_helloprint_models: [helloprint, helloprint_connect]
+ 
   pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
-    
-  pricing_countries: [France, Spain]
+ 
+  pricing_competitors_raw: {
+      'Belgium' : [reclameland, drukwerkdeal, flyeralarm, flyeralarm_new],
+      'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer],
+      'Netherlands' : [flyeralarm, flyeralarm_new, reclameland, drukwerkdeal],      
+      'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES],
+      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
+  }
 
   pricing_competitors: {
-      'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer],
-      'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES]
+      'Belgium' : [drukwerkdeal, flyeralarm, reclameland],
+      'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters_feed, pixartprinting, pixart_puppeteer],
+      'Netherlands' : [drukwerkdeal, flyeralarm, reclameland],      
+      'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES],
+      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
   }
 
-  pricing_competitors_mapped: {
-      'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters, pixartprinting, pixart_puppeteer],
-      'Spain' : [flyeralarm, Onlineprinters, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES]
-  }
-
-  pricing_competitor_map_dict: {
+  pricing_competitor_mapping: {
       'flyeralarm' : ['flyeralarm_new', 'flyeralarm_alpha', 'flyeralarm_beta'],
-      'Onlineprinters' : ['Onlineprinters-feed']
+      'Onlineprinters' : ['Onlineprinters-feed'],
+      'Print24_ES' : ['Print24-ES'],
+      'Onlineprinters_ES' : ['Onlineprinters-ES'],
+      'Onlineprinters_feed' : ['Onlineprinters-feed']
       }
 
+  pricing_country_mapping: {
+      'United_Kingdom' : ['United Kingdom']
+      }

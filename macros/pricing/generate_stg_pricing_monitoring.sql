@@ -1,5 +1,7 @@
-{% macro generate_stg_pricing_monitoring(country, competitors, competitors_mapped, products) %}
+{% macro generate_stg_pricing_monitoring(country, competitors_raw, competitors, products) %}
 
+{% set competitor_mapping = var('pricing_competitor_mapping') %}
+{% set country_mapping = var('pricing_country_mapping') %}
 
 WITH 
 
@@ -14,7 +16,7 @@ map_filter_rename AS (
     size,
     cover,
     finishing,
-    {{ map_comp('competitor_name') }} AS competitor_renamed,
+    {{ map_case('competitor_name', competitor_mapping) }} AS competitor_renamed,
     competitor_price_comp_r1,
     salesprice_comp_r1 AS price_helloprint,
     salesprice_comp_all AS price_helloprint_connect,
@@ -23,9 +25,9 @@ map_filter_rename AS (
     carrier_cost
   FROM {{ source('bigquery-data-analytics', 'pricing_monitoring') }}
   WHERE
-    country_name = '{{ country }}' AND
+    {{ map_case('country_name', country_mapping) }}  = '{{ country }}' AND
     product_name IN ('{{ "','".join(products) }}') AND
-    competitor_name IN ('{{ "','".join(competitors) }}') AND (
+    competitor_name IN ('{{ "','".join(competitors_raw) }}') AND (
       (salesprice_comp_r1 IS NOT NULL AND salesprice_comp_r1 > 0) OR
       (salesprice_comp_all IS NOT NULL AND salesprice_comp_all > 0))),
 
@@ -41,7 +43,7 @@ grouped AS (
     cover,
     finishing,
     /* loop through competitors */
-    {% for competitor in competitors_mapped -%}
+    {% for competitor in competitors -%}
     MAX(
       if(
         competitor_renamed = '{{ competitor }}'

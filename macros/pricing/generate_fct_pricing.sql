@@ -20,7 +20,6 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          price_{{ model }},
@@ -58,16 +57,14 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          price_{{ model }},
          SUM(CASE WHEN price_{{ model }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) AS {{ model }}_partition,
          {% endfor -%}
-
          /* loop through competitors */
          {% for competitor in competitors -%}
-                  price_{{ competitor }},
+         price_{{ competitor }},
          SUM(CASE WHEN price_{{ competitor }} IS NULL THEN 0 ELSE 1 END) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) AS {{ competitor }}_partition
          {%- if not loop.last %},{% endif %}
          {% endfor -%}
@@ -91,13 +88,11 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          CASE WHEN {{ model }}_partition = LAG({{ model }}_partition, 1) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ model }}_is_real,
          FIRST_VALUE(price_{{ model }}) OVER (PARTITION BY product_name, sku, {{ model }}_partition ORDER BY spider_update_at ASC) AS price_{{ model }},
          {% endfor -%}
-
          /* loop through competitors */
          {% for competitor in competitors -%}
          CASE WHEN {{ competitor }}_partition = LAG({{ competitor }}_partition, 1) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ competitor }}_is_real,
@@ -125,14 +120,12 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
-
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          CASE WHEN price_{{ model }} IS NULL THEN NULL ELSE price_{{ model }}_is_real END AS price_{{ model }}_is_real,
          price_{{ model }},
          LAG(price_{{ model }}, 1) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) AS price_lag_{{ model }},
          {% endfor -%}
-
          /* loop through competitors */
          {% for competitor in competitors -%}
          CASE WHEN price_{{ competitor }} IS NULL THEN NULL ELSE price_{{ competitor }}_is_real END AS price_{{ competitor }}_is_real,

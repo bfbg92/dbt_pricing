@@ -1,6 +1,58 @@
 version: 2
 
 models:
+  - name: stg_bigquery-data-analytics__pricing_monitoring_Belgium
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_drukwerkdeal
+        description: "SKU Price of competition: drukwerkdeal"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_reclameland
+        description: "SKU Price of competition: reclameland"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
   - name: stg_bigquery-data-analytics__pricing_monitoring_France
     description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
     columns:
@@ -48,6 +100,170 @@ models:
         description: "SKU Price of competition: pixartprinting"
       - name: price_pixart_puppeteer
         description: "SKU Price of competition: pixart_puppeteer"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
+  - name: stg_bigquery-data-analytics__pricing_monitoring_Netherlands
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_drukwerkdeal
+        description: "SKU Price of competition: drukwerkdeal"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_reclameland
+        description: "SKU Price of competition: reclameland"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
+  - name: stg_bigquery-data-analytics__pricing_monitoring_Spain
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_Onlineprinters_feed
+        description: "SKU Price of competition: Onlineprinters_feed"
+      - name: price_pixart_puppeteer
+        description: "SKU Price of competition: pixart_puppeteer"
+      - name: price_pixartprinting
+        description: "SKU Price of competition: pixartprinting"
+      - name: price_Print24_ES
+        description: "SKU Price of competition: Print24_ES"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
+  - name: stg_bigquery-data-analytics__pricing_monitoring_United_Kingdom
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_solopress
+        description: "SKU Price of competition: solopress"
+      - name: price_routeoneprint
+        description: "SKU Price of competition: routeoneprint"
+      - name: price_tradeprint
+        description: "SKU Price of competition: tradeprint"
+      - name: price_instantprint
+        description: "SKU Price of competition: instantprint"
       - name: price_helloprint
         description: "SKU Price of competition: helloprint"
       - name: price_helloprint_connect
