@@ -38,14 +38,12 @@ models:
         description: "Product Attribute: finishing"
       - name: price_flyeralarm
         description: "SKU Price of competition: flyeralarm"
-      - name: price_flyeralarm_new
-        description: "SKU Price of competition: flyeralarm_new"
       - name: price_printoclock
         description: "SKU Price of competition: printoclock"
       - name: price_realisaprint
         description: "SKU Price of competition: realisaprint"
-      - name: price_Onlineprinters-feed
-        description: "SKU Price of competition: Onlineprinters-feed"
+      - name: price_Onlineprinters
+        description: "SKU Price of competition: Onlineprinters"
       - name: price_pixartprinting
         description: "SKU Price of competition: pixartprinting"
       - name: price_pixart_puppeteer
