@@ -7,4 +7,4 @@
     {% set belgium_competitors.value = v %}
 {% endfor %}
 
-{{ generate_sum_pricing('Belgium', belgium_competitors.value) }} 
+{{ generate_sum_pricing('Belgium', belgium_competitors.value) }}

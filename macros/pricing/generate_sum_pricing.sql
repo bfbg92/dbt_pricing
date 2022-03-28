@@ -35,7 +35,7 @@ WITH
             /* loop through competitors */
             {% for competitor in competitors -%}
             price_{{ competitor }}_is_real = TRUE
-            {%- if not loop.last %}OR{% endif %}
+            {%- if not loop.last %} OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS distinct_sku_all
       FROM {{ ref(fct_pricing_country) }}
@@ -76,7 +76,7 @@ WITH
             /* loop through competitors */
             {% for competitor in competitors -%}
             price_{{ competitor }}_is_real = TRUE
-            {%- if not loop.last %}OR{% endif %}
+            {%- if not loop.last %} OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS distinct_sku_all
       FROM {{ ref(fct_pricing_country) }}
@@ -97,7 +97,7 @@ WITH
             /* loop through competitors */
             {% for competitor in competitors -%}
             price_{{ competitor }}_is_real = TRUE
-            {%- if not loop.last %}OR{% endif %}
+            {%- if not loop.last %} OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS distinct_sku_all
       FROM {{ ref(fct_pricing_country) }}
@@ -118,7 +118,7 @@ WITH
             /* loop through competitors */
             {% for competitor in competitors -%}
             price_{{ competitor }}_is_real = TRUE
-            {%- if not loop.last %}OR{% endif %}
+            {%- if not loop.last %} OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS distinct_sku_all
       FROM {{ ref(fct_pricing_country) }}
@@ -148,7 +148,7 @@ WITH
             /* loop through competitors */
             {% for competitor in competitors -%}
             fp.price_{{ competitor }}_is_real = TRUE
-            {%- if not loop.last %}OR{% endif %}
+            {%- if not loop.last %} OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS last_sku_all
       FROM {{ ref(fct_pricing_country) }} fp
