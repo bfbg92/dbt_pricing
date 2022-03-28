@@ -8,7 +8,7 @@
     sku_finishing,
     total_revenue,
     order_items
-  FROM {{ source('bigquery-data-analytics', 'order_items_2month') }}
+  FROM {{ source('bigquery-data-analytics_report', 'order_items_2month') }}
   WHERE country  = '{{ country }}'
 
 {% endmacro %}
