@@ -23,7 +23,7 @@ map_filter_rename AS (
     cost_price,
     supplier_price,
     carrier_cost
-  FROM {{ source('bigquery-data-analytics', 'pricing_monitoring') }}
+  FROM {{ source('bigquery-data-analytics_silver', 'pricing_monitoring') }}
   WHERE
     {{ map_case('country_name', country_mapping) }}  = '{{ country }}' AND
     product_name IN ('{{ "','".join(products) }}') AND
