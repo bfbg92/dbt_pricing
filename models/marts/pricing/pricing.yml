@@ -1381,3 +1381,12 @@ models:
       - name: "helloprint_connect_vs_instantprint"
         description: helloprint_connect_vs_instantprint
         tests:
+
+
+  - name: sum_pricing_Belgium
+    description: sum_pricing_Belgium
+
+    columns:
+      - name: "pricing_id"
+        description: pricing_id
+        tests:

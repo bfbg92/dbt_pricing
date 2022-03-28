@@ -147,7 +147,7 @@ WITH
          COUNT(DISTINCT IF ((
             /* loop through competitors */
             {% for competitor in competitors -%}
-            fp.price_{{ competitor }}_is_real = TRUE OR
+            fp.price_{{ competitor }}_is_real = TRUE
             {%- if not loop.last %}OR{% endif %}
             {% endfor -%}
          ), sku, NULL)) AS last_sku_all
