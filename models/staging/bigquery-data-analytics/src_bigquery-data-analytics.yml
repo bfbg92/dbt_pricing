@@ -1,10 +1,10 @@
 version: 2
 
 sources:
-  - name: bigquery-data-analytics
+  - name: bigquery-data-analytics_silver
     database: helloprint-data-analytics-live
-    schema: silver_raw
     description: bigquery_table_from_spyder
+    schema: silver_raw
 
     freshness:
       warn_after:
@@ -71,14 +71,13 @@ sources:
           - name: carrier_cost
             description: "SKU Carrier Cost for Helloprint"
 
-  - name: bigquery-data-analytics
+  - name: bigquery-data-analytics_report
     database: helloprint-data-analytics-live
+    description: bigquery_table_from_spyder-sales
     schema: report
-    description: dwh_data
-
     tables:
       - name: order_items_2month
-        identifier: order_items_2month_data_staging
+        identifier: order_items_2month
 
         columns:
           - name: country
