@@ -195,6 +195,5 @@ FROM distinct_sku_all_time dsat
    LEFT JOIN distinct_sku_2_month ds2m ON dsat.product_name = ds2m.product_name AND COALESCE(dsat.material, 'None') = COALESCE(ds2m.material, 'None') AND COALESCE(dsat.size, 'None') = COALESCE(ds2m.size, 'None')
    LEFT JOIN distinct_sku_4_month ds4m ON dsat.product_name = ds4m.product_name AND COALESCE(dsat.material, 'None') = COALESCE(ds4m.material, 'None') AND COALESCE(dsat.size, 'None') = COALESCE(ds4m.size, 'None')
    LEFT JOIN distinct_sku_6_month ds6m ON dsat.product_name = ds6m.product_name AND COALESCE(dsat.material, 'None') = COALESCE(ds6m.material, 'None') AND COALESCE(dsat.size, 'None') = COALESCE(ds6m.size, 'None')
-;
 
 {% endmacro %}
