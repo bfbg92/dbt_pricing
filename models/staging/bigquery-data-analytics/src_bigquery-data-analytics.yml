@@ -70,3 +70,46 @@ sources:
             description: "SKU Supplier Price for Helloprint"
           - name: carrier_cost
             description: "SKU Carrier Cost for Helloprint"
+
+  - name: bigquery-data-analytics
+    database: helloprint-data-analytics-live
+    schema: report
+    description: dwh_data
+
+    tables:
+      - name: order_items_2month
+        identifier: order_items_2month_data_staging
+
+        columns:
+          - name: country
+            description: "Shop Country"
+            tests:
+              - not_null
+          - name: sku_product_identifier
+            description: "SKU product identifier"
+            tests:
+              - not_null
+          - name: sku_material
+            description: "Product Attribute: material"
+            tests:
+              - not_null
+          - name: sku_size
+            description: "Product Attribute: size"
+            tests:
+              - not_null
+          - name: sku_printing_option
+            description: "Product Attribute: printing_option"
+            tests:
+              - not_null
+          - name: sku_finishing
+            description: "Product Attribute: finishing"
+            tests:
+              - not_null
+          - name: total_revenue
+            description: "Total Revenue on the past 2 months"
+            tests:
+              - not_null
+          - name: order_items
+            description: "Total Items sold on the past 2 months"
+            tests:
+              - not_null
