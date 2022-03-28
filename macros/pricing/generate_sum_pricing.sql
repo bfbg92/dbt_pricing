@@ -1,4 +1,4 @@
-{% macro generate_sum_pricing(country, helloprint_models, competitors) %}
+{% macro generate_sum_pricing(country, competitors) %}
 
 {% set stg_pricing_order_items_2month_country = 'stg_bigquery-data-analytics__order_items_2month_' ~ country %}
 {% set fct_pricing_country = 'fct_pricing_' ~ country %}
