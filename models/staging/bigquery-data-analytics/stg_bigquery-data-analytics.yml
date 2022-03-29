@@ -274,3 +274,103 @@ models:
         description: "SKU Supplier Price for Helloprint"
       - name: carrier_cost
         description: "SKU Carrier Cost for Helloprint"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_Belgium
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_France
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_Netherlands
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_Spain
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_United_Kingdom
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
