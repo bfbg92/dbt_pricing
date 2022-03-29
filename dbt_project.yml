@@ -40,13 +40,13 @@ models:
 vars:
 
   pricing_helloprint_models: [helloprint, helloprint_connect]
- 
+
   pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
- 
+
   pricing_competitors_raw: {
       'Belgium' : [reclameland, drukwerkdeal, flyeralarm, flyeralarm_new],
       'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer],
-      'Netherlands' : [flyeralarm, flyeralarm_new, reclameland, drukwerkdeal],      
+      'Netherlands' : [flyeralarm, flyeralarm_new, reclameland, drukwerkdeal],
       'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES],
       'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
   }
@@ -54,7 +54,7 @@ vars:
   pricing_competitors: {
       'Belgium' : [drukwerkdeal, flyeralarm, reclameland],
       'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters_feed, pixartprinting, pixart_puppeteer],
-      'Netherlands' : [drukwerkdeal, flyeralarm, reclameland],      
+      'Netherlands' : [drukwerkdeal, flyeralarm, reclameland],
       'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES],
       'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
   }

@@ -20,4 +20,4 @@
     {% set united_kingdom_competitors.value = v %}
 {% endfor %}
 
-{{ generate_fct_pricing('United_Kingdom', helloprint_models, united_kingdom_competitors.value) }} 
+{{ generate_fct_pricing('United_Kingdom', helloprint_models, united_kingdom_competitors.value) }}
