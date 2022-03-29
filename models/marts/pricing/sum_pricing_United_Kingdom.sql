@@ -3,7 +3,7 @@
 {% set competitors = var('pricing_competitors') %}
 
 {% set united_kingdom_competitors = namespace(value=['']) %}
-{% for k, v in competitors.items() if k == 'Spain' %}
+{% for k, v in competitors.items() if k == 'United_Kingdom' %}
     {% set united_kingdom_competitors.value = v %}
 {% endfor %}
 
