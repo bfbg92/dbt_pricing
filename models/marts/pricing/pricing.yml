@@ -1383,10 +1383,83 @@ models:
         tests:
 
 
-  - name: sum_pricing_Belgium
-    description: sum_pricing_Belgium
-
+  - name: sum_pricing_belgium
+    description: ""
     columns:
-      - name: "pricing_id"
-        description: pricing_id
-        tests:
+      - name: product_name
+        description: ""
+
+      - name: material
+        description: ""
+
+      - name: size
+        description: ""
+
+      - name: last_spider_update_at
+        description: ""
+
+      - name: last_sku_drukwerkdeal
+        description: ""
+
+      - name: last_sku_flyeralarm
+        description: ""
+
+      - name: last_sku_reclameland
+        description: ""
+
+      - name: last_sku_all
+        description: ""
+
+      - name: all_time_distinct_sku_drukwerkdeal
+        description: ""
+
+      - name: all_time_distinct_sku_flyeralarm
+        description: ""
+
+      - name: all_time_distinct_sku_reclameland
+        description: ""
+
+      - name: all_time_distinct_sku_all
+        description: ""
+
+      - name: last_2_month_distinct_sku_drukwerkdeal
+        description: ""
+
+      - name: last_2_month_distinct_sku_flyeralarm
+        description: ""
+
+      - name: last_2_month_distinct_sku_reclameland
+        description: ""
+
+      - name: last_2_month_distinct_sku_all
+        description: ""
+
+      - name: last_4_month_distinct_sku_drukwerkdeal
+        description: ""
+
+      - name: last_4_month_distinct_sku_flyeralarm
+        description: ""
+
+      - name: last_4_month_distinct_sku_reclameland
+        description: ""
+
+      - name: last_4_month_distinct_sku_all
+        description: ""
+
+      - name: last_6_month_distinct_sku_drukwerkdeal
+        description: ""
+
+      - name: last_6_month_distinct_sku_flyeralarm
+        description: ""
+
+      - name: last_6_month_distinct_sku_reclameland
+        description: ""
+
+      - name: last_6_month_distinct_sku_all
+        description: ""
+
+      - name: revenue
+        description: ""
+
+      - name: order_items
+        description: ""

@@ -120,3 +120,23 @@ It goes under: `~/.dbt/profiles.yml`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `dbt run --models folder.subfolder` - will run all models in the subfolder <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `dbt run --models +folder.subfolder` - will run all models in the subfolder and all parents <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *also works for `dbt test`
+<br><br>
+
+## Used Packages
+#### fishtown-analytics/codegen
+generate_source - This macro generates lightweight YAML for a Source, which you can then paste into a schema file.
+```
+$ dbt run-operation generate_source --args '{"database_name":"helloprint-data-analytics-live", "schema_name":"report", "table_pattern":"order_items_2month", "generate_columns":"True", "include_descriptions":"True"}'
+```
+
+generate_model_yaml - This macro generates the YAML for a model, which you can then paste into a schema.yml file.
+```
+$ dbt run-operation generate_model_yaml --args '{"model_name":"sum_pricing_Belgium"}'
+```
+
+*Under `/analysis/generate_sources.sql` and `/analysis/generate_model_yaml.sql` there are runnable scripts that generate the respective compiled sql
+```
+$ dbt compile
+```
+the compiled output can be found on `target/compiled/{project name}/analyses/running_total_by_account.sql`
+
