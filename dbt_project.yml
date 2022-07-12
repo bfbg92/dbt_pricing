@@ -44,18 +44,18 @@ vars:
   pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
 
   pricing_competitors_raw: {
-      'Belgium' : [reclameland, drukwerkdeal, flyeralarm, flyeralarm_new],
-      'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer],
+      'Belgium' : [reclameland, drukwerkdeal, flyeralarm, flyeralarm_new, Print.com-TA-BE, Print.com-BE],
+      'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer, Print24-FR, Onlineprinters-FR, Flyeralarm-FR, Saxoprint-FR, Exaprint-FR, Pixartprinting-FR, Realisaprint-FR, Printoclock-FR, Imprimerie-FR],
       'Netherlands' : [flyeralarm, flyeralarm_new, reclameland, drukwerkdeal],
-      'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES],
+      'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES, Flyeralarm-ES, Pixartprinting-ES, 360Imprimir-ES],
       'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
   }
 
   pricing_competitors: {
-      'Belgium' : [drukwerkdeal, flyeralarm, reclameland, "Print.com-TA-BE", "Print.com-BE"],
-      'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters_feed, pixartprinting, pixart_puppeteer, Print24-FR, Onlineprinters-FR, Flyeralarm-FR, Saxoprint-FR, Exaprint-FR, Pixartprinting-FR, Realisaprint-FR, Printoclock-FR, Imprimerie-FR],
-      'Netherlands' : [drukwerkdeal, flyeralarm, reclameland, "Print.com-TA-NL", "Print.com-NL"],
-      'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES, Flyeralarm-ES, Pixartprinting-ES, 360Imprimir-ES],
+      'Belgium' : [drukwerkdeal, flyeralarm, reclameland, Print_com_TA_BE, Print_com_BE],
+      'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters_feed, pixartprinting, pixart_puppeteer, Print24_FR, Onlineprinters_FR, Flyeralarm_FR, Saxoprint_FR, Exaprint_FR, Pixartprinting_FR, Realisaprint_FR, Printoclock_FR, Imprimerie_FR],
+      'Netherlands' : [drukwerkdeal, flyeralarm, reclameland, Print_com_TA_NL, Print_com_NL, Print.com-TA-NL, Print.com-NL],
+      'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES, Flyeralarm_ES, Pixartprinting_ES, 360Imprimir_ES],
       'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
   }
 
@@ -64,7 +64,23 @@ vars:
       'Onlineprinters' : ['Onlineprinters-feed'],
       'Print24_ES' : ['Print24-ES'],
       'Onlineprinters_ES' : ['Onlineprinters-ES'],
-      'Onlineprinters_feed' : ['Onlineprinters-feed']
+      'Onlineprinters_feed' : ['Onlineprinters-feed'],
+      'Print_com_TA_BE' : ['Print.com-TA-BE'],
+      'Print_com_BE' : ['Print.com-BE'],
+      'Print24_FR' : ['Print24-FR'],    
+      'Onlineprinters_FR' : ['Onlineprinters-FR'],
+      'Flyeralarm_FR' : ['Flyeralarm-FR'],
+      'Saxoprint_FR' : ['Saxoprint-FR'],
+      'Exaprint_FR' : ['Exaprint-FR'],
+      'Pixartprinting_FR' : ['Pixartprinting-FR'],
+      'Realisaprint_FR' : ['Realisaprint-FR'],
+      'Printoclock_FR' : ['Printoclock-FR'],
+      'Imprimerie_FR' : ['Imprimerie-FR'],
+      'Print_com_TA_NL' : ['Print.com-TA-NL'],
+      'Print_com_NL' : ['Print.com-NL'],
+      'Flyeralarm_ES' : ['Flyeralarm-ES'],
+      'Pixartprinting_ES' : ['Pixartprinting-ES'],
+      '360Imprimir_ES' : ['360Imprimir-ES']
       }
 
   pricing_country_mapping: {
