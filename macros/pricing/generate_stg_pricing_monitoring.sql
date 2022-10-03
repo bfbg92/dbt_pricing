@@ -22,14 +22,18 @@ map_filter_rename AS (
     salesprice_comp_all AS price_helloprint_connect,
     cost_price,
     supplier_price,
-    carrier_cost
+    carrier_cost,
+    supplier
   FROM {{ source('bigquery-data-analytics_silver', 'pricing_monitoring') }}
   WHERE
     {{ map_case('country_name', country_mapping) }}  = '{{ country }}' AND
     product_name IN ('{{ "','".join(products) }}') AND
-    competitor_name IN ('{{ "','".join(competitors_raw) }}') AND (
+    competitor_name IN ('{{ "','".join(competitors_raw) }}') AND
+    sku NOT LIKE '%|%' AND
+    (
       (salesprice_comp_r1 IS NOT NULL AND salesprice_comp_r1 > 0) OR
-      (salesprice_comp_all IS NOT NULL AND salesprice_comp_all > 0))),
+      (salesprice_comp_all IS NOT NULL AND salesprice_comp_all > 0))
+    ),
 
 grouped AS (
   SELECT
@@ -42,6 +46,7 @@ grouped AS (
     size,
     cover,
     finishing,
+    supplier,
     /* loop through competitors */
     {% for competitor in competitors -%}
     MAX(

@@ -20,6 +20,7 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
+         supplier,
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          price_{{ model }},
@@ -57,6 +58,7 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
+         supplier,
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          price_{{ model }},
@@ -88,6 +90,7 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
+         supplier,
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          CASE WHEN {{ model }}_partition = LAG({{ model }}_partition, 1) OVER (PARTITION BY product_name, sku ORDER BY spider_update_at ASC) THEN FALSE ELSE TRUE END AS price_{{ model }}_is_real,
@@ -120,6 +123,7 @@ WITH
          cost_price,
          supplier_price,
          carrier_cost,
+         supplier,
          /* loop through helloprint_models */
          {% for model in helloprint_models -%}
          CASE WHEN price_{{ model }} IS NULL THEN NULL ELSE price_{{ model }}_is_real END AS price_{{ model }}_is_real,
@@ -153,6 +157,7 @@ SELECT
    cost_price,
    supplier_price,
    carrier_cost,
+   supplier,
 
    /* loop through helloprint_models */
    {% for model in helloprint_models -%}
