@@ -63,7 +63,7 @@ grouped AS (
     MAX(supplier_price) AS supplier_price,
     MAX(carrier_cost) AS carrier_cost
     FROM map_filter_rename
-    GROUP BY 1,2,3,4,5,6,7,8,9)
+    GROUP BY 1,2,3,4,5,6,7,8,9,10)
 
 SELECT * FROM grouped 
 
