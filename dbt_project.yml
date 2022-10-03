@@ -60,7 +60,7 @@ vars:
       'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES, Flyeralarm_ES, Pixartprinting_ES, _360Imprimir_ES],
       'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint],
       'Germany' : [flyeralarm, Wirmachendruck_DE, Saxoprint_DE, Print24_DE, Onlineprinters_feed, Onlineprinters_DE],
-      'Italy' : [pixart_puppeteer, flyeralarm, Saxoprint_IT, Printered_IT, Pressup_IT, Pixartprinting_IT, Onlineprinters_feed, Onlineprinters_IT, Fasterprint_IT, ADIVIN_IT, 4graph_IT]
+      'Italy' : [pixart_puppeteer, flyeralarm, Saxoprint_IT, Printered_IT, Pressup_IT, Pixartprinting_IT, Onlineprinters_feed, Onlineprinters_IT, Fasterprint_IT, ADIVIN_IT, _4graph_IT]
   }
 
   pricing_competitor_mapping: {
@@ -96,7 +96,7 @@ vars:
       'Onlineprinters_IT' : ['Onlineprinters-IT'],
       'Fasterprint_IT' : ['Fasterprint-IT'],
       'ADIVIN_IT' : ['ADIVIN-IT'],
-      '4graph_IT' : ['4graph-IT']
+      '_4graph_IT' : ['4graph-IT']
       }
 
   pricing_country_mapping: {
