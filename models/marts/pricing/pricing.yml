@@ -1706,8 +1706,8 @@ models:
         tests:
 
 
-  - name: fct_pricing_United_Kingdom
-    description: fct_pricing_United_Kingdom
+  - name: fct_pricing_Germany
+    description: fct_pricing_Germany
 
     columns:
       - name: "pricing_id"
