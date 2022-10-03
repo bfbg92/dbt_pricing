@@ -166,6 +166,72 @@ models:
         tests:
           - not_null
 
+  - name: dim_sku_turnaround_type_Germany
+    description: "TODO"
+    columns:
+      - name: pricing_id
+        description: "unique key"
+        tests:
+          - not_null
+          - unique
+      - name: spider_update_at
+        description: "Date when spider ran and prices were fetched from"
+        tests:
+          - not_null
+      - name: country_name
+        description: "Country of the shop where prices were fetched from"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku_no_turnaround
+        description: "Unique product id without turnaround information of the collected prices"
+        tests:
+          - not_null
+      - name: turnaround_type
+        description: "TODO"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+
+  - name: dim_sku_turnaround_type_Italy
+    description: "TODO"
+    columns:
+      - name: pricing_id
+        description: "unique key"
+        tests:
+          - not_null
+          - unique
+      - name: spider_update_at
+        description: "Date when spider ran and prices were fetched from"
+        tests:
+          - not_null
+      - name: country_name
+        description: "Country of the shop where prices were fetched from"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku_no_turnaround
+        description: "Unique product id without turnaround information of the collected prices"
+        tests:
+          - not_null
+      - name: turnaround_type
+        description: "TODO"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+
   - name: fct_pricing_Belgium
     description: fct_pricing_Belgium
 
@@ -1383,8 +1449,537 @@ models:
         tests:
 
 
+  - name: fct_pricing_Italy
+    description: fct_pricing_Italy
+
+    columns:
+      - name: "pricing_id"
+        description: pricing_id
+        tests:
+
+      - name: "spider_update_at"
+        description: spider_update_at
+        tests:
+
+      - name: "product_name"
+        description: product_name
+        tests:
+
+      - name: "sku"
+        description: sku
+        tests:
+
+      - name: "sku_no_turnaround"
+        description: sku_no_turnaround
+        tests:
+
+      - name: "quantity"
+        description: quantity
+        tests:
+
+      - name: "turnaround"
+        description: turnaround
+        tests:
+
+      - name: "turnaround_type"
+        description: turnaround_type
+        tests:
+
+      - name: "material"
+        description: material
+        tests:
+
+      - name: "size"
+        description: size
+        tests:
+
+      - name: "cover"
+        description: cover
+        tests:
+
+      - name: "finishing"
+        description: finishing
+        tests:
+
+      - name: "cost_price"
+        description: cost_price
+        tests:
+
+      - name: "supplier_price"
+        description: supplier_price
+        tests:
+
+      - name: "carrier_cost"
+        description: carrier_cost
+        tests:
+
+      - name: "price_helloprint_is_real"
+        description: price_helloprint_is_real
+        tests:
+
+      - name: "price_helloprint"
+        description: price_helloprint
+        tests:
+
+      - name: "price_variation_helloprint"
+        description: price_variation_helloprint
+        tests:
+
+      - name: "gpm_helloprint"
+        description: gpm_helloprint
+        tests:
+
+      - name: "price_helloprint_connect_is_real"
+        description: price_helloprint_connect_is_real
+        tests:
+
+      - name: "price_helloprint_connect"
+        description: price_helloprint_connect
+        tests:
+
+      - name: "price_variation_helloprint_connect"
+        description: price_variation_helloprint_connect
+        tests:
+
+      - name: "gpm_helloprint_connect"
+        description: gpm_helloprint_connect
+        tests:
+
+      - name: "price_flyeralarm_is_real"
+        description: price_flyeralarm_is_real
+        tests:
+
+      - name: "price_flyeralarm"
+        description: price_flyeralarm
+        tests:
+
+      - name: "price_variation_flyeralarm"
+        description: price_variation_flyeralarm
+        tests:
+
+      - name: "gpm_flyeralarm"
+        description: gpm_flyeralarm
+        tests:
+
+      - name: "helloprint_diff_flyeralarm"
+        description: helloprint_diff_flyeralarm
+        tests:
+
+      - name: "helloprint_connect_diff_flyeralarm"
+        description: helloprint_connect_diff_flyeralarm
+        tests:
+
+      - name: "helloprint_vs_flyeralarm"
+        description: helloprint_vs_flyeralarm
+        tests:
+
+      - name: "helloprint_connect_vs_flyeralarm"
+        description: helloprint_connect_vs_flyeralarm
+        tests:
+
+      - name: "price_solopress_is_real"
+        description: price_solopress_is_real
+        tests:
+
+      - name: "price_solopress"
+        description: price_solopress
+        tests:
+
+      - name: "price_variation_solopress"
+        description: price_variation_solopress
+        tests:
+
+      - name: "gpm_solopress"
+        description: gpm_solopress
+        tests:
+
+      - name: "helloprint_diff_solopress"
+        description: helloprint_diff_solopress
+        tests:
+
+      - name: "helloprint_connect_diff_solopress"
+        description: helloprint_connect_diff_solopress
+        tests:
+
+      - name: "helloprint_vs_solopress"
+        description: helloprint_vs_solopress
+        tests:
+
+      - name: "helloprint_connect_vs_solopress"
+        description: helloprint_connect_vs_solopress
+        tests:
+
+      - name: "price_routeoneprint_is_real"
+        description: price_routeoneprint_is_real
+        tests:
+
+      - name: "price_routeoneprint"
+        description: price_routeoneprint
+        tests:
+
+      - name: "price_variation_routeoneprint"
+        description: price_variation_routeoneprint
+        tests:
+
+      - name: "gpm_routeoneprint"
+        description: gpm_routeoneprint
+        tests:
+
+      - name: "helloprint_diff_routeoneprint"
+        description: helloprint_diff_routeoneprint
+        tests:
+
+      - name: "helloprint_connect_diff_routeoneprint"
+        description: helloprint_connect_diff_routeoneprint
+        tests:
+
+      - name: "helloprint_vs_routeoneprint"
+        description: helloprint_vs_routeoneprint
+        tests:
+
+      - name: "helloprint_connect_vs_routeoneprint"
+        description: helloprint_connect_vs_routeoneprint
+        tests:
+
+      - name: "price_tradeprint_is_real"
+        description: price_tradeprint_is_real
+        tests:
+
+      - name: "price_tradeprint"
+        description: price_tradeprint
+        tests:
+
+      - name: "price_variation_tradeprint"
+        description: price_variation_tradeprint
+        tests:
+
+      - name: "gpm_tradeprint"
+        description: gpm_tradeprint
+        tests:
+
+      - name: "helloprint_diff_tradeprint"
+        description: helloprint_diff_tradeprint
+        tests:
+
+      - name: "helloprint_connect_diff_tradeprint"
+        description: helloprint_connect_diff_tradeprint
+        tests:
+
+      - name: "helloprint_vs_tradeprint"
+        description: helloprint_vs_tradeprint
+        tests:
+
+      - name: "helloprint_connect_vs_tradeprint"
+        description: helloprint_connect_vs_tradeprint
+        tests:
+
+      - name: "price_instantprint_is_real"
+        description: price_instantprint_is_real
+        tests:
+
+      - name: "price_instantprint"
+        description: price_instantprint
+        tests:
+
+      - name: "price_variation_instantprint"
+        description: price_variation_instantprint
+        tests:
+
+      - name: "gpm_instantprint"
+        description: gpm_instantprint
+        tests:
+
+      - name: "helloprint_diff_instantprint"
+        description: helloprint_diff_instantprint
+        tests:
+
+      - name: "helloprint_connect_diff_instantprint"
+        description: helloprint_connect_diff_instantprint
+        tests:
+
+      - name: "helloprint_vs_instantprint"
+        description: helloprint_vs_instantprint
+        tests:
+
+      - name: "helloprint_connect_vs_instantprint"
+        description: helloprint_connect_vs_instantprint
+        tests:
+
+
+  - name: fct_pricing_United_Kingdom
+    description: fct_pricing_United_Kingdom
+
+    columns:
+      - name: "pricing_id"
+        description: pricing_id
+        tests:
+
+      - name: "spider_update_at"
+        description: spider_update_at
+        tests:
+
+      - name: "product_name"
+        description: product_name
+        tests:
+
+      - name: "sku"
+        description: sku
+        tests:
+
+      - name: "sku_no_turnaround"
+        description: sku_no_turnaround
+        tests:
+
+      - name: "quantity"
+        description: quantity
+        tests:
+
+      - name: "turnaround"
+        description: turnaround
+        tests:
+
+      - name: "turnaround_type"
+        description: turnaround_type
+        tests:
+
+      - name: "material"
+        description: material
+        tests:
+
+      - name: "size"
+        description: size
+        tests:
+
+      - name: "cover"
+        description: cover
+        tests:
+
+      - name: "finishing"
+        description: finishing
+        tests:
+
+      - name: "cost_price"
+        description: cost_price
+        tests:
+
+      - name: "supplier_price"
+        description: supplier_price
+        tests:
+
+      - name: "carrier_cost"
+        description: carrier_cost
+        tests:
+
+      - name: "price_helloprint_is_real"
+        description: price_helloprint_is_real
+        tests:
+
+      - name: "price_helloprint"
+        description: price_helloprint
+        tests:
+
+      - name: "price_variation_helloprint"
+        description: price_variation_helloprint
+        tests:
+
+      - name: "gpm_helloprint"
+        description: gpm_helloprint
+        tests:
+
+      - name: "price_helloprint_connect_is_real"
+        description: price_helloprint_connect_is_real
+        tests:
+
+      - name: "price_helloprint_connect"
+        description: price_helloprint_connect
+        tests:
+
+      - name: "price_variation_helloprint_connect"
+        description: price_variation_helloprint_connect
+        tests:
+
+      - name: "gpm_helloprint_connect"
+        description: gpm_helloprint_connect
+        tests:
+
+      - name: "price_flyeralarm_is_real"
+        description: price_flyeralarm_is_real
+        tests:
+
+      - name: "price_flyeralarm"
+        description: price_flyeralarm
+        tests:
+
+      - name: "price_variation_flyeralarm"
+        description: price_variation_flyeralarm
+        tests:
+
+      - name: "gpm_flyeralarm"
+        description: gpm_flyeralarm
+        tests:
+
+      - name: "helloprint_diff_flyeralarm"
+        description: helloprint_diff_flyeralarm
+        tests:
+
+      - name: "helloprint_connect_diff_flyeralarm"
+        description: helloprint_connect_diff_flyeralarm
+        tests:
+
+      - name: "helloprint_vs_flyeralarm"
+        description: helloprint_vs_flyeralarm
+        tests:
+
+      - name: "helloprint_connect_vs_flyeralarm"
+        description: helloprint_connect_vs_flyeralarm
+        tests:
+
+      - name: "price_solopress_is_real"
+        description: price_solopress_is_real
+        tests:
+
+      - name: "price_solopress"
+        description: price_solopress
+        tests:
+
+      - name: "price_variation_solopress"
+        description: price_variation_solopress
+        tests:
+
+      - name: "gpm_solopress"
+        description: gpm_solopress
+        tests:
+
+      - name: "helloprint_diff_solopress"
+        description: helloprint_diff_solopress
+        tests:
+
+      - name: "helloprint_connect_diff_solopress"
+        description: helloprint_connect_diff_solopress
+        tests:
+
+      - name: "helloprint_vs_solopress"
+        description: helloprint_vs_solopress
+        tests:
+
+      - name: "helloprint_connect_vs_solopress"
+        description: helloprint_connect_vs_solopress
+        tests:
+
+      - name: "price_routeoneprint_is_real"
+        description: price_routeoneprint_is_real
+        tests:
+
+      - name: "price_routeoneprint"
+        description: price_routeoneprint
+        tests:
+
+      - name: "price_variation_routeoneprint"
+        description: price_variation_routeoneprint
+        tests:
+
+      - name: "gpm_routeoneprint"
+        description: gpm_routeoneprint
+        tests:
+
+      - name: "helloprint_diff_routeoneprint"
+        description: helloprint_diff_routeoneprint
+        tests:
+
+      - name: "helloprint_connect_diff_routeoneprint"
+        description: helloprint_connect_diff_routeoneprint
+        tests:
+
+      - name: "helloprint_vs_routeoneprint"
+        description: helloprint_vs_routeoneprint
+        tests:
+
+      - name: "helloprint_connect_vs_routeoneprint"
+        description: helloprint_connect_vs_routeoneprint
+        tests:
+
+      - name: "price_tradeprint_is_real"
+        description: price_tradeprint_is_real
+        tests:
+
+      - name: "price_tradeprint"
+        description: price_tradeprint
+        tests:
+
+      - name: "price_variation_tradeprint"
+        description: price_variation_tradeprint
+        tests:
+
+      - name: "gpm_tradeprint"
+        description: gpm_tradeprint
+        tests:
+
+      - name: "helloprint_diff_tradeprint"
+        description: helloprint_diff_tradeprint
+        tests:
+
+      - name: "helloprint_connect_diff_tradeprint"
+        description: helloprint_connect_diff_tradeprint
+        tests:
+
+      - name: "helloprint_vs_tradeprint"
+        description: helloprint_vs_tradeprint
+        tests:
+
+      - name: "helloprint_connect_vs_tradeprint"
+        description: helloprint_connect_vs_tradeprint
+        tests:
+
+      - name: "price_instantprint_is_real"
+        description: price_instantprint_is_real
+        tests:
+
+      - name: "price_instantprint"
+        description: price_instantprint
+        tests:
+
+      - name: "price_variation_instantprint"
+        description: price_variation_instantprint
+        tests:
+
+      - name: "gpm_instantprint"
+        description: gpm_instantprint
+        tests:
+
+      - name: "helloprint_diff_instantprint"
+        description: helloprint_diff_instantprint
+        tests:
+
+      - name: "helloprint_connect_diff_instantprint"
+        description: helloprint_connect_diff_instantprint
+        tests:
+
+      - name: "helloprint_vs_instantprint"
+        description: helloprint_vs_instantprint
+        tests:
+
+      - name: "helloprint_connect_vs_instantprint"
+        description: helloprint_connect_vs_instantprint
+        tests:
+
   - name: sum_pricing_Belgium
     description: sum_pricing_Belgium
+
+    columns:
+      - name: "pricing_id"
+        description: pricing_id
+        tests:
+
+  - name: sum_pricing_Germany
+    description: sum_pricing_Germany
+
+    columns:
+      - name: "pricing_id"
+        description: pricing_id
+        tests:
+
+  - name: sum_pricing_Italy
+    description: sum_pricing_Italy
 
     columns:
       - name: "pricing_id"

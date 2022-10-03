@@ -275,6 +275,120 @@ models:
       - name: carrier_cost
         description: "SKU Carrier Cost for Helloprint"
 
+
+  - name: stg_bigquery-data-analytics__pricing_monitoring_Germany
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_solopress
+        description: "SKU Price of competition: solopress"
+      - name: price_routeoneprint
+        description: "SKU Price of competition: routeoneprint"
+      - name: price_tradeprint
+        description: "SKU Price of competition: tradeprint"
+      - name: price_instantprint
+        description: "SKU Price of competition: instantprint"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
+
+  - name: stg_bigquery-data-analytics__pricing_monitoring_Italy
+    description: "A subset of the data is extracted and processed. Irrelevant columns and rows are discarded"
+    columns:
+      - name: spider_update_at
+        description: "Date when spider ran and the pricing values were fetched"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Product Name of the collected prices"
+        tests:
+          - not_null
+      - name: sku
+        description: "Unique product id of the collected prices"
+        tests:
+          - not_null
+      - name: quantity
+        description: "Product Attribute: Quantity"
+        tests:
+          - not_null
+      - name: turnaround
+        description: "Product Attribute: TurnAround"
+        tests:
+          - not_null
+      - name: material
+        description: "Product Attribute: material"
+        tests:
+          - not_null
+      - name: size
+        description: "Product Attribute: size"
+        tests:
+          - not_null
+      - name: cover
+        description: "Product Attribute: cover"
+      - name: finishing
+        description: "Product Attribute: finishing"
+      - name: price_flyeralarm
+        description: "SKU Price of competition: flyeralarm"
+      - name: price_solopress
+        description: "SKU Price of competition: solopress"
+      - name: price_routeoneprint
+        description: "SKU Price of competition: routeoneprint"
+      - name: price_tradeprint
+        description: "SKU Price of competition: tradeprint"
+      - name: price_instantprint
+        description: "SKU Price of competition: instantprint"
+      - name: price_helloprint
+        description: "SKU Price of competition: helloprint"
+      - name: price_helloprint_connect
+        description: "SKU Price of competition: helloprint_connect"
+      - name: cost_price
+        description: "SKU Cost Price for Helloprint"
+      - name: supplier_price
+        description: "SKU Supplier Price for Helloprint"
+      - name: carrier_cost
+        description: "SKU Carrier Cost for Helloprint"
+
   - name: stg_bigquery-data-analytics__order_items_2month_Belgium
     description: "A subset of the order items 2month data"
     columns:
@@ -356,6 +470,46 @@ models:
         description: "Total Items sold on the past 2 months"
 
   - name: stg_bigquery-data-analytics__order_items_2month_United_Kingdom
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_Germany
+    description: "A subset of the order items 2month data"
+    columns:
+      - name: sku_product_identifier
+        description: "SKU product identifier"
+        tests:
+          - not_null
+      - name: sku_material
+        description: "Product Attribute: material"
+      - name: sku_size
+        description: "Product Attribute: size"
+      - name: sku_printing_option
+        description: "Product Attribute: printing_option"
+      - name: sku_finishing
+        description: "Product Attribute: finishing"
+      - name: total_revenue
+        description: "Total Revenue on the past 2 months"
+      - name: order_items
+        description: "Total Items sold on the past 2 months"
+
+  - name: stg_bigquery-data-analytics__order_items_2month_Italy
     description: "A subset of the order items 2month data"
     columns:
       - name: sku_product_identifier
