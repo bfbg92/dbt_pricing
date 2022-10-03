@@ -41,14 +41,16 @@ vars:
 
   pricing_helloprint_models: [helloprint, helloprint_connect]
 
-  pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations]
+  pricing_products: [Flyers3, Postersv2, Businesscardsv2, Letterheads, Rollupbannersbudget, Envelopes, Postcards, Placemats, Stickersv2, Bookmarks, Roll-up banners (promo), Vouchers, Invitations, Foldedleafletshalffoldv2, Foldedleafletstrifoldv2, Labelsonrollpvcwhite, Beachflags, Folders, Notepads, Bookletsa4landscape, Bookletsa6, Bookletsa5landscape, Bookletsmediumsquare, Bookletslargesquare, Bookletsa5, Bookletsa4, Bookletsus]
 
   pricing_competitors_raw: {
       'Belgium' : [reclameland, drukwerkdeal, flyeralarm, flyeralarm_new, Print.com-TA-BE, Print.com-BE],
       'France' : [flyeralarm, flyeralarm_new, printoclock, realisaprint, Onlineprinters-feed, pixartprinting, pixart_puppeteer, Print24-FR, Onlineprinters-FR, Flyeralarm-FR, Saxoprint-FR, Exaprint-FR, Pixartprinting-FR, Realisaprint-FR, Printoclock-FR, Imprimerie-FR],
       'Netherlands' : [flyeralarm, flyeralarm_new, reclameland, drukwerkdeal, Print.com-TA-NL, Print.com-NL],
       'Spain' : [flyeralarm, flyeralarm_new, Onlineprinters-feed, pixart_puppeteer, Onlineprinters-ES, pixartprinting, Print24-ES, Flyeralarm-ES, Pixartprinting-ES, 360Imprimir-ES],
-      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
+      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint],
+      'Germany' : [flyeralarm_new, Wirmachendruck-DE, Saxoprint-DE, Print24-DE, Onlineprinters-feed, Onlineprinters-DE, Flyeralarm-DE],
+      'Italy' : [pixart_puppeteer, flyeralarm_new, flyeralarm, Saxoprint-IT, Printered-IT, Pressup-IT, Pixartprinting-IT, Onlineprinters-feed, Onlineprinters-IT, FlyerAlarm-IT, Fasterprint-IT, ADIVIN-IT, 4graph-IT]
   }
 
   pricing_competitors: {
@@ -56,18 +58,20 @@ vars:
       'France' : [flyeralarm, printoclock, realisaprint, Onlineprinters_feed, pixartprinting, pixart_puppeteer, Print24_FR, Onlineprinters_FR, Flyeralarm_FR, Saxoprint_FR, Exaprint_FR, Pixartprinting_FR, Realisaprint_FR, Printoclock_FR, Imprimerie_FR],
       'Netherlands' : [drukwerkdeal, flyeralarm, reclameland, Print_com_TA_NL, Print_com_NL],
       'Spain' : [flyeralarm, Onlineprinters_feed, pixart_puppeteer, Onlineprinters_ES, pixartprinting, Print24_ES, Flyeralarm_ES, Pixartprinting_ES, _360Imprimir_ES],
-      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint]
+      'United_Kingdom' : [flyeralarm, solopress, routeoneprint, tradeprint, instantprint],
+      'Germany' : [flyeralarm, Wirmachendruck_DE, Saxoprint_DE, Print24_DE, Onlineprinters_feed, Onlineprinters_DE],
+      'Italy' : [pixart_puppeteer, flyeralarm, Saxoprint_IT, Printered_IT, Pressup_IT, Pixartprinting_IT, Onlineprinters_feed, Onlineprinters_IT, Fasterprint_IT, ADIVIN_IT, 4graph_IT]
   }
 
   pricing_competitor_mapping: {
-      'flyeralarm' : ['flyeralarm_new', 'flyeralarm_alpha', 'flyeralarm_beta'],
+      'flyeralarm' : ['flyeralarm_new', 'Flyeralarm-DE', 'FlyerAlarm-IT'],
       'Onlineprinters' : ['Onlineprinters-feed'],
       'Print24_ES' : ['Print24-ES'],
       'Onlineprinters_ES' : ['Onlineprinters-ES'],
       'Onlineprinters_feed' : ['Onlineprinters-feed'],
       'Print_com_TA_BE' : ['Print.com-TA-BE'],
       'Print_com_BE' : ['Print.com-BE'],
-      'Print24_FR' : ['Print24-FR'],    
+      'Print24_FR' : ['Print24-FR'],
       'Onlineprinters_FR' : ['Onlineprinters-FR'],
       'Flyeralarm_FR' : ['Flyeralarm-FR'],
       'Saxoprint_FR' : ['Saxoprint-FR'],
@@ -80,7 +84,19 @@ vars:
       'Print_com_NL' : ['Print.com-NL'],
       'Flyeralarm_ES' : ['Flyeralarm-ES'],
       'Pixartprinting_ES' : ['Pixartprinting-ES'],
-      '360Imprimir_ES' : ['_360Imprimir-ES']
+      '360Imprimir_ES' : ['_360Imprimir-ES'],
+      'Wirmachendruck_DE' : ['Wirmachendruck-DE'],
+      'Saxoprint_DE' : ['Saxoprint-DE'],
+      'Print24_DE' : ['Print24-DE'],
+      'Onlineprinters_DE' : ['Onlineprinters-DE'],
+      'Saxoprint_IT' : ['Saxoprint-IT'],
+      'Pixartprinting_IT' : ['Pixartprinting-IT'],
+      'Printered_IT' : ['Printered-IT'],
+      'Pressup_IT' : ['Pressup-IT'],
+      'Onlineprinters_IT' : ['Onlineprinters-IT'],
+      'Fasterprint_IT' : ['Fasterprint-IT'],
+      'ADIVIN_IT' : ['ADIVIN-IT'],
+      '4graph_IT' : ['4graph-IT']
       }
 
   pricing_country_mapping: {
