@@ -16,7 +16,7 @@ sources:
 
     tables:
       - name: pricing_monitoring
-        identifier: pricing_monitoring_data_staging
+        identifier: pricing_monitoring_data_production
         loaded_at_field: time_price_updated
 
         columns:
